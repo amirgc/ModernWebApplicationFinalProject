@@ -2,7 +2,9 @@
 
 const Promise = require("bluebird");
 const DbConstant = require("../utils/dbConstant");
-const datastore = require("./index").datastore;
+const datastore = require("./datastore").datastore;
+var mongoose = require("mongoose");
+var User = mongoose.model("User");
 
 /**
  * Create a new Entity
@@ -18,31 +20,13 @@ const datastore = require("./index").datastore;
  *  resolve{Entity}
  *  reject{Error}
  */
-function create(Model, data, ancestors) {
+function create(Model) {
   return new Promise((resolve, reject) => {
-    datastore.allocateIds(datastore.key([Model.entityKind]), 1, function(
-      errOnIdCreation,
-      ids
-    ) {
-      if (!errOnIdCreation) {
-        const id = ids[0].id;
-        const dataSanitized = Model.sanitize(data);
-        const model = new Model(
-          dataSanitized,
-          id,
-          ancestors,
-          DbConstant.NAMESPACE
-        );
-        return model.save(function(errOnEntityCreation, createdEntity) {
-          if (!errOnEntityCreation) {
-            resolve(parseSingleEntity(createdEntity));
-          } else {
-            reject(errOnEntityCreation);
-          }
-        });
-      } else {
-        reject(errOnIdCreation);
+     Model.save(function(err, user) {
+      if (err) {
+        reject(err);
       }
+      resolve(user);
     });
   });
 }
@@ -72,58 +56,6 @@ function list(Kind, queryParams, filterableProperties, ancestors) {
     let query = Kind.query(DbConstant.NAMESPACE)
       .limit(parseInt(queryParams.limit) || DbConstant.DEFAULT_ENTITY_PER_PAGE)
       .offset(parseInt(queryParams.offset) || 0);
-    if (ancestors) {
-      query.hasAncestor(
-        datastore.key({
-          namespace: DbConstant.NAMESPACE,
-          path: ancestors
-        })
-      );
-    }
-    delete queryParams.limit;
-    delete queryParams.offset;
-
-    return Promise.each(Object.keys(queryParams), function(key) {
-      let value = queryParams[key];
-      if (value === "true") {
-        value = true;
-      } else if (value === "false") {
-        value = false;
-      }
-      if (filterableProperties.indexOf(key) > -1) {
-        query = query.filter(key, "=", value);
-      } else {
-        reject(new Error(`${key} properties is not present.`));
-      }
-    })
-      .then(() => {
-        query.run(
-          {
-            showKey: true
-          },
-          function(errOnList, listedEntities) {
-            if (errOnList) {
-              reject(errOnList);
-            } else if (listedEntities.entities.length) {
-              listedEntities.entities.forEach(entity => {
-                if (entity.__key.parent) {
-                  const path = entity.__key.parent.path;
-                  for (let i = 0; i < path.length; i = i + 2) {
-                    entity[path[i].toLowerCase()] = {
-                      id: parseInt(path[i + 1])
-                    };
-                  }
-                }
-                delete entity.__key;
-              });
-              resolve(listedEntities.entities);
-            } else {
-              resolve([]);
-            }
-          }
-        );
-      })
-      .catch(err => reject(err));
   });
 }
 

@@ -1,0 +1,6 @@
+{
+  "PORT": 3002,
+  "BP_MAIL_SENDER_EMAIL_ADDRESS": "sewasoft@gmail.com",
+  "BP_MAIL_SENDER_PASSWORD": "+test",
+  "BP_PUBLIC_PAYMENT_REDIRECT_URI": "http://locahost:4201/test"
+}
