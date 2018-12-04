@@ -13,50 +13,14 @@ function createTestData(req, res, next) {
     });
 }
 
-function listTestData(req, res, next) {
-  console.log("List called");
-  TestService.retrieveTestData(req.params.latefeeId, [
-    DbConstant.COMPANY,
-    parseInt(req.user.company.id)
-  ])
-    .then(response => {
-      res.send(response);
-    })
-    .catch(err => {
-      next(err);
-    });
-}
+function listTestData(req, res, next) {}
 
-function retrieveTestData(req, res, next) {
-  console.log("retrieve called");
-  TestService.retrieveTestData(req.params.latefeeId, [
-    DbConstant.COMPANY,
-    parseInt(req.user.company.id)
-  ])
-    .then(response => {
-      res.send(response);
-    })
-    .catch(err => {
-      next(err);
-    });
-}
-
-function updateLateFee(req, res, next) {
-  LateFeeService.updateLateFee(req.body.id, req.body, [
-    DbConstant.COMPANY,
-    parseInt(req.user.company.id)
-  ])
-    .then(response => {
-      res.send(response);
-    })
-    .catch(err => {
-      next(err);
-    });
-}
+function updateTestData(req, res, next) {}
+function deleteTestData(req, res, next) {}
 
 module.exports = {
   createTestData,
   listTestData,
-  retrieveTestData,
-  updateLateFee
+  updateTestData,
+  deleteTestData 
 };

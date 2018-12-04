@@ -1,30 +1,10 @@
 "use strict";
 
 const Promise = require("bluebird");
-const TestDataModel = require("../../models/test.model");
 const repository = require("../../models/repository");
 const DbConstant = require("../../utils/dbConstant");
 var mongoose = require("mongoose");
 var User = mongoose.model("User");
-/**
- * List all test Data
- * @param lateFeeParams {Object}
- *  eg:
- *    {
- *     name: "name",
- *     chargeType: "flat",
- *     value: 10
- *    }
- *  @params ancestors {Array}
- *    eg:
- *      ['AncestorKind', AncestorKey]
- * @return Promise
- *  resolve{LateFee}, if new Late Fee is created
- *  reject{Error}, if late fee can't be created
- */
-function listTestData(params, ancestors) {
-  return repository.list(TestData, params, filterableProperties, ancestors);
-}
 
 /**
  * Create a new TestData
@@ -60,8 +40,18 @@ function createTestData(params) {
       });
   });
 }
+
 /**
- * Create a new Late Fee
+ * List all test Data
+ * @return Promise
+ *  resolve{test data}
+ *   */
+function listTestData(params, ancestors) {
+  return repository.list(TestData, params, filterableProperties, ancestors);
+}
+
+/**
+ * Retrieve a test date
  * @param lateFeeParams {Object}
  *  eg:
  *    {
@@ -76,7 +66,7 @@ function createTestData(params) {
  *  resolve{LateFee}, if new Late Fee is created
  *  reject{Error}, if late fee can't be created
  */
-function retrieveTestData(lateFeeParams, ancestors) {
+function updateTestData(lateFeeParams, ancestors) {
   return new Promise(function(resolve, reject) {
     /**
      * Check whether late fee of same name exist
@@ -110,7 +100,7 @@ function retrieveTestData(lateFeeParams, ancestors) {
 }
 
 module.exports = {
-  retrieveTestData,
+  createTestData,
   listTestData,
-  createTestData
+  updateTestData
 };
