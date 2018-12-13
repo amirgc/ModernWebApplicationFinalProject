@@ -8,10 +8,12 @@ var logger = require("morgan");
 const envConfig = require(`${process.env.PWD}/config/env/envConf`);
 
 //initialize mongoose schemas
-require('./src/models/test.model');
-var mongoose = require('mongoose');                         //add for Mongo support
-mongoose.connect('mongodb://localhost:27017/waptestdb');              //connect to Mongo
-
+require("./src/models/test.model");
+var mongoose = require("mongoose"); //add for Mongo support
+//mongoose.connect("mongodb://localhost:27017/waptestdb"); //connect to Mongo
+mongoose.connect(
+  "mongodb+srv://supadmin:blast6365@cluster0-brkqj.mongodb.net/foodOrderingDb_Dev?retryWrites=true"
+);
 var app = express();
 
 // view engine setup

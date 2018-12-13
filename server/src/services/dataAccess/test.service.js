@@ -8,16 +8,13 @@ var User = mongoose.model("User");
 
 /**
  * Create a new TestData
- * @param lateFeeParams {Object}
+ * @param userParams {Object}
  *  eg:
  *    {
  *     name: "name",
  *     chargeType: "flat",
  *     value: 10
  *    }
- *  @params ancestors {Array}
- *    eg:
- *      ['AncestorKind', AncestorKey]
  * @return Promise
  *  resolve{LateFee}, if new Late Fee is created
  *  reject{Error}, if late fee can't be created
@@ -25,9 +22,7 @@ var User = mongoose.model("User");
 function createTestData(params) {
   return new Promise(function(resolve, reject) {
     let user = new User(params);
-    // user.username = params.username;
-    // user.password = params.password;
-    return repository
+    repository
       .create(user)
       .then(data => {
         resolve({
@@ -46,54 +41,38 @@ function createTestData(params) {
  * @return Promise
  *  resolve{test data}
  *   */
-function listTestData(params, ancestors) {
-  return repository.list(TestData, params, filterableProperties, ancestors);
+function listTestData() {
+  let params = {
+    limit: 10
+  };
+  return new Promise(function(resolve, reject) {
+    repository
+      .list(User, params)
+      .then(data => resolve(data))
+      .catch(err => reject(err));
+  });
 }
 
 /**
  * Retrieve a test date
- * @param lateFeeParams {Object}
+ * @param testdata {Object}
  *  eg:
  *    {
  *     name: "name",
  *     chargeType: "flat",
  *     value: 10
  *    }
- *  @params ancestors {Array}
- *    eg:
- *      ['AncestorKind', AncestorKey]
  * @return Promise
- *  resolve{LateFee}, if new Late Fee is created
- *  reject{Error}, if late fee can't be created
+ *  resolve{testdata}, if test data is updated
+ *  reject{Error}, if test data can't be updated
  */
-function updateTestData(lateFeeParams, ancestors) {
+function updateTestData(lateFeeParams) {
   return new Promise(function(resolve, reject) {
-    /**
-     * Check whether late fee of same name exist
-     */
-    return listLateFee(
-      {
-        name: lateFeeParams["name"]
-      },
-      ancestors.slice()
-    )
+    repository
+      .update({})
       .then(lateFeeListed => {
-        if (lateFeeListed.length) {
-          resolve({
-            data: lateFeeListed[0],
-            action: DbConstant.RETRIEVE,
-            message: "Late Fee of similar name exists."
-          });
-        } else {
-          return repository
-            .create(LateFee, lateFeeParams, ancestors)
-            .then(lateFeeCreated => {
-              resolve({
-                data: lateFeeCreated,
-                action: DbConstant.CREATE
-              });
-            });
-        }
+        console.log(updatedData);
+        resolve(updatedData);
       })
       .catch(err => reject(err));
   });

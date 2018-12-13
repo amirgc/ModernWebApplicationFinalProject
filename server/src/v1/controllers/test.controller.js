@@ -13,7 +13,15 @@ function createTestData(req, res, next) {
     });
 }
 
-function listTestData(req, res, next) {}
+function listTestData(req, res, next) {
+  TestService.listTestData()
+    .then(response => {
+      res.send(response);
+    })
+    .catch(err => {
+      next(err);
+    });
+}
 
 function updateTestData(req, res, next) {}
 function deleteTestData(req, res, next) {}
@@ -22,5 +30,5 @@ module.exports = {
   createTestData,
   listTestData,
   updateTestData,
-  deleteTestData 
+  deleteTestData
 };

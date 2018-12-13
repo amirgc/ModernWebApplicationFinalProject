@@ -27,7 +27,7 @@ function create(Model) {
 
 /**
  * Provides the filter query
- * @param Kind {Model}, not a string
+ * @param Model {Model}, not a string
  *  eg: Company
  * @param queryParams{Object},
  *  eg:
@@ -37,19 +37,18 @@ function create(Model) {
  *      active: true,
  *      email: 'me@email.com'
  *    }
- * @param filterableProperties{Array}, properties that can be filtered for the provided Model
- *  eg: ['active', 'email', 'name']
- * @param ancestors{Array}
- *  eg: ['AncestorKind', AncestorKey]
  * @return {Promise}
  *  resolve{Entity[]}
  *  reject{Error}
  */
-function list(Kind, queryParams, filterableProperties) {
+function list(Model, queryParams) {
   return new Promise((resolve, reject) => {
-    let query = Kind.query(DbConstant.NAMESPACE)
+    Model.find({})
       .limit(parseInt(queryParams.limit) || DbConstant.DEFAULT_ENTITY_PER_PAGE)
-      .offset(parseInt(queryParams.offset) || 0);
+      .exec(function(err, data) {
+        if (err) reject(err);
+        resolve(data);
+      });
   });
 }
 
@@ -57,14 +56,13 @@ function list(Kind, queryParams, filterableProperties) {
  * remove entity
  * @param Model {Model}
  * @param id {Integer}
- *  eg: ['AncestorKind', AncestorKey]
  * @return {Promise}
  *  resolve{Entity}
  *  reject{Error}
  */
 function remove(Model, id) {
   return new Promise((resolve, reject) => {
-    Model.delete(id, ancestors, DbConstant.NAMESPACE)
+    Model.delete(id)
       .then(response => {
         if (!response.success) {
           throw new Error(
@@ -90,31 +88,25 @@ function remove(Model, id) {
  *  reject{Error}
  */
 function retrieve(Model, id) {
-  return Model.get(id).then(
-    retrievedEntity => {
-      return parseSingleEntity(retrievedEntity);
-    }
-  );
+  return Model.get(id).then(retrievedEntity => {
+    return parseSingleEntity(retrievedEntity);
+  });
 }
 
 /**
  * Update the entity parameter of the provide entity id
- * @param Model {GStore Model}
+ * @param Model {Model}
  * @param id {Integer}
- * @param data {Object}
  *  eg:
  *    {
  *      key: value
  *    }
- * @param ancestors {Array}
- *  eg: ['AncestorKind', AncestorKey]
  * @return {Promise}
  *  resolve{Entity}
  *  reject{Error}
  */
-function update(Model, id, data) {
-  const dataSanitized = Model.sanitize(data);
-  return Model.update(id, dataSanitized, ancestors, DbConstant.NAMESPACE)
+function update(Model, id) {
+  return Model.update(id)
     .then(updatedEntity => {
       return parseSingleEntity(updatedEntity);
     })
