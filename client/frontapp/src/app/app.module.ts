@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { MaterialComponentsModule } from "./material-components.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 // custom modules
 import { UserModule } from "./user/user.module";
@@ -32,7 +33,8 @@ import { RegisterComponent } from "./auth/register/register.component";
     UserModule,
     AdminModule,
     BrowserAnimationsModule,
-    MaterialComponentsModule
+    MaterialComponentsModule,
+    HttpClientModule
   ],
   providers: [AuthCompleteService, AuthAdminGuard],
   bootstrap: [AppComponent]
