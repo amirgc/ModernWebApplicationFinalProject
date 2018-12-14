@@ -12,9 +12,10 @@ import { AuthCompleteComponent } from "./auth/authcomplete/authcomplete.componen
 
 import { AuthCompleteService } from "./auth/authcomplete/authcomplete.service";
 import { AuthAdminGuard } from "./_guards/auth.guard";
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AuthCompleteComponent],
+  declarations: [AppComponent, LoginComponent, AuthCompleteComponent, RegisterComponent],
   imports: [BrowserModule, AppRoutingModule, UserModule, AdminModule],
   providers: [AuthCompleteService, AuthAdminGuard],
   bootstrap: [AppComponent]

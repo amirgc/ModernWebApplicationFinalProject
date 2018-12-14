@@ -7,11 +7,16 @@ import { DashboardComponent } from "./admin/dashboard/dashboard.component";
 import { AuthAdminGuard } from "./_guards/auth.guard";
 import { UsermainComponent } from "./user/usermain/usermain.component";
 import { HomeComponent } from "./user/home/home.component";
+import { RegisterComponent } from "./auth/register/register.component";
 
 const routes: Routes = [
   {
     path: "login",
     component: LoginComponent
+  },
+  {
+    path: "register",
+    component: RegisterComponent
   },
   {
     path: "admin",

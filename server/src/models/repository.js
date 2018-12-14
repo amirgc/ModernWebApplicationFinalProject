@@ -16,11 +16,12 @@ const DbConstant = require("../utils/dbConstant");
  */
 function create(Model) {
   return new Promise((resolve, reject) => {
-    Model.save(function(err, user) {
+    console.log("auth repo createUser")
+    Model.save(function(err, data) {
       if (err) {
         reject(err);
       }
-      resolve(user);
+      resolve(data);
     });
   });
 }
