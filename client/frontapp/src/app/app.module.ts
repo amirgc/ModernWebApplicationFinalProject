@@ -1,5 +1,8 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { MaterialComponentsModule } from "./material-components.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 // custom modules
 import { UserModule } from "./user/user.module";
@@ -12,11 +15,25 @@ import { AuthCompleteComponent } from "./auth/authcomplete/authcomplete.componen
 
 import { AuthCompleteService } from "./auth/authcomplete/authcomplete.service";
 import { AuthAdminGuard } from "./_guards/auth.guard";
-import { RegisterComponent } from './auth/register/register.component';
+import { RegisterComponent } from "./auth/register/register.component";
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AuthCompleteComponent, RegisterComponent],
-  imports: [BrowserModule, AppRoutingModule, UserModule, AdminModule],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    AuthCompleteComponent,
+    RegisterComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    UserModule,
+    AdminModule,
+    BrowserAnimationsModule,
+    MaterialComponentsModule
+  ],
   providers: [AuthCompleteService, AuthAdminGuard],
   bootstrap: [AppComponent]
 })
