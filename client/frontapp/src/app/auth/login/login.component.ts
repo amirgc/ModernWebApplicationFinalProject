@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     console.log("called");
     this.loginService.login(this.loginmodel).subscribe(data => {
       if (data.auth) {
-        localStorage.setItem("currentUser", JSON.stringify(data);
+        localStorage.setItem("currentUser", JSON.stringify(data));
         this.router.navigate(["/admin"]);
         console.log(data, typeof data.auth);
       } else {
