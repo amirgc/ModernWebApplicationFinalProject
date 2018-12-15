@@ -6,5 +6,5 @@ const express = require("express"),
 const AuthController = require("../controllers/auth.controller");
 router.post("/login", AuthController.Login);
 router.post("/register", AuthController.CreateUser);
-router.get("/findUserById", VerifyToken, AuthController.FindUserById);
+router.get("/verifyToken", VerifyToken, AuthController.FindUserById);
 module.exports = router;
