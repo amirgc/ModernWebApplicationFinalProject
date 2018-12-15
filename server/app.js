@@ -8,9 +8,9 @@ var logger = require("morgan");
 const envConfig = require(`${process.env.PWD}/config/env/envConf`);
 
 //initialize mongoose schemas
-require("./src/models/test.model");
+require("./src/models/initialize-model");
 var mongoose = require("mongoose"); //add for Mongo support
-//mongoose.connect("mongodb://localhost:27017/waptestdb"); //connect to Mongo
+var cors = require("cors");
 mongoose.connect(
   "mongodb+srv://supadmin:blast6365@cluster0-brkqj.mongodb.net/foodOrderingDb_Dev?retryWrites=true"
 );
@@ -26,9 +26,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cors());
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
 // Include all routes
 require(`./helpers/routes`).route(app);
 

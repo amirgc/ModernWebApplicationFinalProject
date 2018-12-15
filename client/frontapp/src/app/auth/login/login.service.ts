@@ -16,8 +16,14 @@ export class LoginService {
   });
   constructor(private http: HttpClient) {}
   login(loginModel: Loginmodel): Observable<any> {
-    return this.http.post(this.httpRequestUrl + "login", loginModel, {
+    const logindata =
+      "grant_type=password&email=" +
+      loginModel.email +
+      "&password=" +
+      loginModel.password;
+    console.log("url", this.httpRequestUrl);
+    return this.http.post(this.httpRequestUrl + "login", logindata, {
       headers: this.headers
-    });
+ });
   }
 }
