@@ -7,18 +7,18 @@ import { Router, CanActivate } from "@angular/router";
 export class AuthAdminGuard implements CanActivate {
   constructor(
     private router: Router,
-    private authCompleteService: AuthCompleteService,
-    @Inject("globals") public Globals
+    private authCompleteService: AuthCompleteService
   ) {}
 
   canActivate(): Observable<boolean> | boolean {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const token = currentUser && currentUser.token;
-
+    console.log("AuthAdminGuard", token);
     if (token) {
       this.authCompleteService.getUserInfo(token).subscribe(
         response => {
-          if (response.Roles === "admin") {
+          console.log("authCompleteService", response);
+          if (response.role === "admin") {
             // This means already logged-in
             return true;
           } else {

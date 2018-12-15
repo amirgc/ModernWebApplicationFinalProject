@@ -2,7 +2,7 @@
 
 const nconf = (module.exports = require("nconf"));
 const path = require("path");
-const requiredParams = ["PORT", "BP_MAIL_SENDER_EMAIL_ADDRESS","BP_PUBLIC_PAYMENT_REDIRECT_URI"];
+const requiredParams = ["PORT"];
 
 nconf
   // 1. Command-line arguments
