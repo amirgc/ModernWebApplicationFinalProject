@@ -5,6 +5,9 @@ var router = express.Router();
 const OrderController = require("../controllers/order.controller");
 
 router.get('/orders', OrderController.FindAllOrders);
-router.get('/addOrders', OrderController.AddTestOrders);
+router.post('/orders', OrderController.AddTestOrders);
+router.delete('/orders', OrderController.DeleteAllOrders);
+router.delete('/orders/:_id', OrderController.DeleteOrder);
+
 
 module.exports = router;

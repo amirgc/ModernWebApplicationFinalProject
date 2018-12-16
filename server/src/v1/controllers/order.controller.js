@@ -7,25 +7,77 @@ var Orders = mongoose.model("Orders");
 
 
 function FindAllOrders(req, res) {
-  console.log("Find Orders");
-  OrderService.findAllOrders(req)
-    .then(orders => {
-      res.status(200).send(orders);
-    })
-    .catch(err => res.status(500).send("fail"));
+    console.log("Find Orders");
+    OrderService.findAllOrders(req)
+        .then(orders => {
+            res.status(200).send({
+                'status': 'sucess',
+                'data': orders
+            }
+            );
+        })
+        .catch(err => res.status(500).send({
+            'status': 'error',
+            'message': err
+        }));
 }
 
-function AddTestOrders(res){
+function AddTestOrders(req, res) {
     console.log("Add Orders");
     OrderService.addTestOrders()
-      .then(orders => {
-        let data = new Orders(orders);
-        data.save();
-      })
-      .catch(err => res.status(500).send("fail"));
-  }
+        .then(
+            orders => {
+                console.log(orders);
+                let data = new Orders(orders);
+                data.save();
+                res.status(200).send({
+                    'status': 'sucess',
+                    'data': data
+                });
+            })
+        .catch(err => res.status(500).send({
+            'status': 'error',
+            'message': err
+        }));
+}
 
+function DeleteAllOrders(req, res) {
+    console.log("Delete Orders");
+    OrderService.deleteAllOrders()
+        .then(
+            orders => {
+                res.status(200).send({
+                    'status': 'sucess',
+                    'data': []
+                });
+
+            })
+        .catch(err => res.status(500).send({
+            'status': 'error',
+            'message': err
+        }));
+}
+
+function DeleteOrder(req, res) {
+    OrderService.deleteById(req, res)
+        .then(
+            orders => {
+                res.status(200).send({
+                    'status': 'sucess',
+                    'data': orders
+                });
+            })
+        .catch(err => {
+            console.log("Failed This Orders");
+            res.status(500).send({
+                'status': 'error',
+                'message': err
+            })
+            console.log("fail")
+
+        });
+}
 
 module.exports = {
-  FindAllOrders, AddTestOrders
+    FindAllOrders, AddTestOrders, DeleteAllOrders, DeleteOrder
 };
