@@ -3,6 +3,7 @@ var orderSchema = new mongoose.Schema({
     totalAmount: Number,
     userid: String,
     discount: String,
+    status : String,
     orderline: [
         {
             Orderlineid: Number,

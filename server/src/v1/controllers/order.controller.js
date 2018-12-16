@@ -78,6 +78,26 @@ function DeleteOrder(req, res) {
         });
 }
 
+function ChangeOrderStatus(req, res) {
+    OrderService.changeStatus(req, res)
+        .then(
+            orders => {
+                res.status(200).send({
+                    'status': 'sucess',
+                    'message': "order status => completed"
+                });
+            })
+        .catch(err => {
+            console.log("Failed This Orders");
+            res.status(500).send({
+                'status': 'error',
+                'message': err
+            })
+            console.log("fail")
+
+        });
+}
+
 module.exports = {
-    FindAllOrders, AddTestOrders, DeleteAllOrders, DeleteOrder
+    FindAllOrders, AddTestOrders, DeleteAllOrders, DeleteOrder, ChangeOrderStatus
 };

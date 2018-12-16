@@ -6,8 +6,9 @@ function addTestOrders(req) {
 
         let order = new Orders({
             totalAmount: 700,
-            userid: 'Kein',
+            userid: 'Ranjan',
             discount: '0%',
+            status: "pending",
             orderline: [
                 {
                     Orderlineid: 1,
@@ -56,5 +57,17 @@ function deleteById(req, res) {
     })
 }
 
+function changeStatus(req, res) {
+    return new Promise(function (resolve, reject) {
+        const userId = req.params._id;
+        console.log("datas --- ", userId);
+        Orders.update({ _id: userId }, { $set: { status: "completed" } }, function (err, order) {
+            if (err) reject("There was a error changing Status of the order.");
+            if (!order) reject("ChangeStatus failed | No Order.");
+            resolve(order);
+        });
+    })
+}
 
-module.exports = { findAllOrders, addTestOrders, deleteAllOrders, deleteById };
+
+module.exports = { findAllOrders, addTestOrders, deleteAllOrders, deleteById, changeStatus };
