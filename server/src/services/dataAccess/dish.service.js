@@ -37,7 +37,7 @@ function findDishById(req) {
   //     resolve(dish);
   //   });
   // });
-  return repository.retrieve(Dish, req.name);
+  return repository.retrieve(Dish, req.body.name);
 }
 
 /**
@@ -52,7 +52,7 @@ function updateDishById(req) {
   //     resolve(dish);
   //   })
   // })
-  return repository.update(Dish, req.name);
+  return repository.update(Dish, req.body.name);
 }
 
 /**

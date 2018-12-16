@@ -45,8 +45,33 @@ function FindDishes(req, res) {
   .catch(err => res.status(500).send("fail"));
 }
 
+/**
+ * Update the given dish
+ * @param {*} req 
+ * @param {*} res 
+ */
+function UpdateDish(req, res) {
+  console.log("Updating dish");
+  DishService.updateDishById(req)
+  .then(data => {
+    res.status(200).send(JSON.stringify(data));
+  })
+  .catch(err => res.status(500).send("Updating fail"));
+}
+
+function RemoveDish(req, res) {
+  console.log("Removing dish");
+  DishService.removeDish(req)
+  .then(data => {
+    res.status(200).send(JSON.stringify(data));
+  })
+  .catch(err => res.status(500).send("Removing fail"));
+}
+
 module.exports = {
   CreateDish,
   FindDishById,
-  FindDishes
+  FindDishes,
+  UpdateDish,
+  RemoveDish
 };
