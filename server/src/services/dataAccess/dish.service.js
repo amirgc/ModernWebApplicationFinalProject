@@ -58,8 +58,12 @@ function updateDishById(req) {
  * Retrieve all dishes.
  */
 function getAll() {
+  console.log("Dish Service -- getAll()")
   return new Promise(function(resolve, reject) {
-    // Dish.find()
+    Dish.find({}, function(err, data){
+      console.log(data);
+      resolve({status:200, data:data});
+    })
   })
 }
 

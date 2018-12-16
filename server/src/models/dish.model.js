@@ -10,7 +10,7 @@ var dishSchema = new mongoose.Schema(
     category: String,
     types: [
       { name: String, sizes: [
-        {name: String, price: number}
+        {name: String, price: Number }
       ] }
     ]
   },
