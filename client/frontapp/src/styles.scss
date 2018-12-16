@@ -1,0 +1,130 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700");
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "styles/_var.scss";
+@import "styles/_tables.scss";
+@import "styles/_charts.scss";
+@import "styles/_cards.scss";
+@import "styles/_inbox.scss";
+@import "styles/_calendar.scss";
+@import "styles/_misc.scss";
+@import "~@angular/material/theming";
+@include mat-core();
+@keyframes pageLoad {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.page-load-animation {
+  opacity: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  animation: pageLoad linear 1;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-delay: 0.5s;
+  background: #795548;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.input-group input.form-control {
+  border-color: #ef1962;
+  box-shadow: none;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  body {
+    /*padding-bottom: 160px;*/
+    margin-bottom: 0px;
+    overflow: auto;
+    /*min-height: 100%;*/
+  }
+  div.footer {
+    /*background-color: #333!important;*/
+    position: static !important;
+    /*bottom: 0;*/
+    margin-bottom: -30px;
+  }
+}
+
+h1.title {
+  color: #795548;
+  text-align: center;
+  font-size: 5vw;
+}
+
+.welcome .content h3 {
+  text-align: center;
+  font-weight: normal;
+  font-size: 20px;
+  color: #fffffa;
+}
+
+.form-group input.form-control,
+.form-group select.form-control {
+  font-size: 17px;
+  outline: none;
+  border: 1px solid #795548;
+  padding: 11px 20px;
+  height: 46px;
+}
+
+.form-group textarea.form-control {
+  font-size: 17px;
+  outline: none;
+  border: 1px solid #795548;
+  padding: 15px 20px;
+}
+
+.input-group input.form-control {
+  outline: none;
+  border: 1px solid #795548;
+  border-left: 0;
+  padding: 11px 12px;
+  height: 46px;
+}
+.input-group-addon:first-child,
+.input-group-addon {
+  background: #fff;
+  border-color: #795548;
+  color: #795548;
+  padding: 9px 15px;
+  font-size: 24px;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.error-message {
+  background-color: #fce4e4;
+  border: 1px solid #fcc2c3;
+  float: left;
+  padding: 20px 30px;
+  margin-top: 10px;
+}
+.error-text {
+  color: #cc0033;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 20px;
+  text-shadow: 1px 1px rgba(250, 250, 250, 0.3);
+}
