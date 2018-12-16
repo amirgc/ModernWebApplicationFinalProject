@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { MaterialComponentsModule } from "./material-components.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
@@ -28,6 +29,7 @@ import { RegisterComponent } from "./auth/register/register.component";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     UserModule,
     AdminModule,
     BrowserAnimationsModule,
