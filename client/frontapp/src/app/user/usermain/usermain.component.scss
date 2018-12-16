@@ -1,0 +1,9 @@
+.content-container {
+  height: 100%;
+}
+
+@media screen and (min-width: 960px) {
+  .mat-drawer-backdrop {
+    z-index: 50 !important;
+  }
+}

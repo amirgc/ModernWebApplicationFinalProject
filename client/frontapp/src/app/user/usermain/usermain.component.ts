@@ -4,7 +4,7 @@ import { Router, NavigationEnd } from "@angular/router";
 @Component({
   selector: "app-usermain",
   templateUrl: "./usermain.component.html",
-  styleUrls: ["./usermain.component.css"]
+  styleUrls: ["./usermain.component.scss"]
 })
 export class UsermainComponent implements OnInit {
   constructor() {}
