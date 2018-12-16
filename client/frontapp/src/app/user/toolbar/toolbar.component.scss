@@ -2,9 +2,44 @@
 :host {
   z-index: $z-index__main-toolbar;
 }
+.main-toolbar {
+  background: #b54f2a;
+  padding-right: 0;
+  height: 64px;
+  padding-left: 16px;
+
+  .user-button-container {
+    height: 100%;
+  }
+
+  button.fullscreen-toggle {
+    border-radius: 0;
+    padding: 0;
+    min-width: 50px;
+    max-width: 50px;
+    height: 100%;
+  }
+
+  button.menu-header {
+    border-radius: 0;
+    padding: 0 2px 0px 0px;
+    min-width: 80px;
+    max-width: 150px;
+    height: 100%;
+    color: white;
+  }
+  .menucolor {
+    color: #795548;
+  }
+}
+
 .logo {
   float: left;
-  width: 30%;
+  padding-left: 10px;
+  color: white;
+  font-family: cursive;
+  font-stretch: 45px;
+  font-variant-caps: petite-caps;
 }
 .itemnumber {
   font-weight: bolder;
@@ -15,13 +50,7 @@
   border-radius: 20px;
   padding: 4px 7px 4px 7px;
 }
-.ofc-logo {
-  max-width: 290px;
-  margin-top: 10px;
-  position: relative;
-  top: -5px;
-  padding-left: 40px;
-}
+
 .title {
   font-size: 24px;
   padding-left: 10px;

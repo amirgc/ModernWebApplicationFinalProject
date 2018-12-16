@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MaterialComponentsModule } from "./../material-components.module";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { UsermainComponent } from "./usermain/usermain.component";
 import { HomeComponent } from "./home/home.component";
@@ -19,6 +20,11 @@ import { MenumainComponent } from "./menumain/menumain.component";
     MenutabComponent,
     MenumainComponent
   ],
-  imports: [CommonModule, RouterModule, MaterialComponentsModule]
+  imports: [
+    CommonModule,
+    RouterModule,
+    MaterialComponentsModule,
+    FlexLayoutModule
+  ]
 })
 export class UserModule {}

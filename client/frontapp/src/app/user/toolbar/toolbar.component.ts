@@ -7,7 +7,9 @@ import { Component, OnInit } from "@angular/core";
 })
 export class ToolbarComponent implements OnInit {
   isBtnActive: boolean;
-  constructor() {}
+  constructor() {
+    //this.isBtnActive = true;
+  }
 
   ngOnInit() {}
 
