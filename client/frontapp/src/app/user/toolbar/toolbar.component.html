@@ -1,3 +1,85 @@
-<p>
-  toolbar works!
-</p>
+<div class="main-toolbar mat-elevation-z2">
+  <button mat-icon-button class="toggleBtn" (click)="toggleMenu()">
+    <mat-icon>dehaze</mat-icon>
+  </button>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxFlex="400px"
+    fxHide
+    fxShow.gt-md
+  >
+    <div class="logo" [routerLink]="['/']">
+      <img
+        src="../../../assets/logo.png"
+        class="ofc-logo"
+        alt="Times Square FoodLand"
+      />
+    </div>
+  </div>
+
+  <span fxFlex></span>
+  <button
+    mat-button
+    fxHide
+    fxShow.gt-xs
+    class="menu-header"
+    [routerLink]="['/']"
+  >
+    Home
+  </button>
+  <button
+    mat-button
+    fxHide
+    fxShow.gt-xs
+    class="menu-header"
+    [routerLink]="['/menu']"
+  >
+    Menu
+  </button>
+
+  <button
+    mat-button
+    fxHide
+    fxShow.gt-xs
+    class="menu-header"
+    [routerLink]="['/aboutus']"
+  >
+    About us
+  </button>
+  <button
+    mat-button
+    fxHide
+    fxShow.gt-xs
+    class="menu-header"
+    [routerLink]="['/contact']"
+  >
+    Contact
+  </button>
+  <button
+    mat-button
+    class="menu-header"
+    [routerLink]="['/login']"
+    *ngIf="!isLoggedIn"
+  >
+    <mat-icon>account_circle</mat-icon> Login
+  </button>
+</div>
+
+<div class="overlay" [class.active]="isBtnActive" (click)="toggleMenu()"></div>
+<div class="sidemenu" [class.active]="isBtnActive">
+  <mat-list>
+    <mat-list-item class="listitem" matRipple [routerLink]="['/']"
+      >Home</mat-list-item
+    >
+    <mat-list-item class="listitem" matRipple [routerLink]="['/menu']"
+      >Menu</mat-list-item
+    >
+    <mat-list-item class="listitem" matRipple [routerLink]="['/aboutus']">
+      About
+    </mat-list-item>
+    <mat-list-item class="listitem" matRipple [routerLink]="['/contact']"
+      >Contact</mat-list-item
+    >
+  </mat-list>
+</div>
