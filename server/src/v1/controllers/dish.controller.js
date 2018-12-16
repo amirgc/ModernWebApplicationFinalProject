@@ -38,7 +38,7 @@ function FindDishById(req, res) {
  */
 function FindDishes(req, res) {
   console.log("Finding dishes");
-  DishService.getAll()
+  DishService.getAll(req)
   .then(data => {
     res.status(200).send(JSON.stringify(data));
   })

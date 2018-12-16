@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var Dish = mongoose.model("Dishes");
 var config = require("../../../config/config");
 var repository = require("../../models/repository");
+var url = require("url");
 
 /**
  * Create a new dish by given information in request
@@ -57,14 +58,11 @@ function updateDishById(req) {
 /**
  * Retrieve all dishes.
  */
-function getAll() {
+function getAll(req) {
   console.log("Dish Service -- getAll()")
-  return new Promise(function(resolve, reject) {
-    Dish.find({}, function(err, data){
-      console.log(data);
-      resolve({status:200, data:data});
-    })
-  })
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  return repository.list(Dish, query);
 }
 
 function removeDish(req) {
