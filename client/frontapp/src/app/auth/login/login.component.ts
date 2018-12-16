@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loginService.login(this.loginmodel).subscribe(data => {
+      localStorage.clear();
       if (data.auth) {
         this.loading = true;
         // get user info
