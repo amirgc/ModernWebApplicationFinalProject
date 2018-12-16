@@ -1,9 +1,10 @@
+
+
 var express = require('express');
 var router = express.Router();
+const OrderController = require("../controllers/order.controller");
 
-/* GET users listing. */
-router.get('/orders', function(req, res, next) {
-  res.status(200).send('test orders');
-});
+router.get('/orders', OrderController.FindAllOrders);
+router.get('/addOrders', OrderController.AddTestOrders);
 
 module.exports = router;
