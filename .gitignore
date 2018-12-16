@@ -59,3 +59,7 @@ typings/
 
 # next.js build output
 .next
+client/frontapp/package-lock.json
+client/frontapp/src/app/auth/login/login.component.ts
+client/frontapp/src/app/auth/login/login.component.ts
+client/frontapp/package-lock.json
