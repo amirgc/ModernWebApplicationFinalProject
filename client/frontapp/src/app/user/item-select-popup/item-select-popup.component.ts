@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { OrderLine } from "./../../_models/order.model";
-import { DishListService } from "../menutab/dish-list.service";
 
 @Component({
   selector: "app-item-select-popup",
@@ -21,8 +20,7 @@ export class ItemSelectPopupComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ItemSelectPopupComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dishListService: DishListService
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.qty = 1;
     console.log(JSON.stringify(data));
@@ -32,16 +30,12 @@ export class ItemSelectPopupComponent implements OnInit {
     // These Item Type and Size is bounded with front end
     this.selectedItemType = this.selectedDish.types[0];
     this.selectedItemSize = this.selectedItemType.sizes[0];
-    this.getIngredients();
   }
 
   dishChanges(event) {
     this.selectedItemType = event.value;
     this.selectedItemSize = this.selectedItemType.sizes[0];
-    this.getIngredients();
   }
-
-  getIngredients() {}
 
   ngOnInit() {}
 

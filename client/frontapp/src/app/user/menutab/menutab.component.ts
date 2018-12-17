@@ -49,10 +49,7 @@ export class MenutabComponent implements OnInit {
 
   ngOnInit() {
     this.globalService.setShowLoader(true);
-    this.dishListService.getDishList1().subscribe(result => {
-      console.log(result);
-    });
-    this.dishListService.getDishList().subscribe(result => {
+     this.dishListService.getDishList().subscribe(result => {
       this.allDishList = result;
       this.selectedDishList = this.allDishList;
       console.log(result);

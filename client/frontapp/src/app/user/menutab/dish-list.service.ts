@@ -16,10 +16,4 @@ export class DishListService {
       headers: this.headers
     });
   }
-  getDishList1(): Observable<any> {
-    return this.http.get(
-      "https://api.tsfoodland.com//api/Dish/CreateDishList",
-      { headers: this.headers }
-    );
-  }
 }

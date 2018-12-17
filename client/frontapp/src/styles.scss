@@ -140,5 +140,12 @@ h3.title.preload {
 .mat-fab.mat-primary,
 .mat-mini-fab.mat-primary,
 .mat-raised-button.mat-primary {
-  background-color: #c26847;
+  background-color: #795548;
+}
+.mat-tab-label {
+  min-width: 80px !important;
+}
+.container {
+  max-width: 90%;
+  margin: auto;
 }
