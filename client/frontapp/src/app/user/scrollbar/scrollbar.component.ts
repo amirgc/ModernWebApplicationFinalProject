@@ -1,5 +1,5 @@
-import { Component, ElementRef, NgZone, OnInit } from '@angular/core';
-import Scrollbar from 'smooth-scrollbar';
+import { Component, ElementRef, NgZone, OnInit } from "@angular/core";
+import Scrollbar from "smooth-scrollbar";
 
 export const scrollbarOptions = {
   speed: 1,
@@ -9,24 +9,20 @@ export const scrollbarOptions = {
   renderByPixels: true,
   alwaysShowTracks: false,
   continuousScrolling: true,
-  overscrollEffect: 'bounce',
+  overscrollEffect: "bounce",
   overscrollDamping: 0.2
 };
 
 @Component({
-  selector: 'ms-scrollbar',
-  templateUrl: './scrollbar.component.html',
-  styleUrls: ['./scrollbar.component.scss']
+  selector: "app-scrollbar",
+  templateUrl: "./scrollbar.component.html",
+  styleUrls: ["./scrollbar.component.scss"]
 })
 export class ScrollbarComponent implements OnInit {
-
   scrollbarRef: Scrollbar;
   element: ElementRef;
 
-  constructor(
-    private _element: ElementRef,
-    private zone: NgZone
-  ) { }
+  constructor(private _element: ElementRef, private zone: NgZone) {}
 
   ngOnInit() {
     this.element = this._element;

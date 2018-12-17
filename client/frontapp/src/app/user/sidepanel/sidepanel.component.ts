@@ -1,4 +1,6 @@
 import { Component, OnInit, OnChanges, Inject, Input } from "@angular/core";
+import { GlobalService } from "./../../_services/globale-variable.services";
+
 import {
   trigger,
   state,
@@ -35,7 +37,7 @@ export class SidepanelComponent implements OnInit, OnChanges {
   grossAmount = "0.00";
   totalItemInOrders = 0;
 
-  constructor(@Inject("globals") public Globals) {}
+  constructor(private globalService: GlobalService) {}
 
   @Input("showSidePanel") showpanel: boolean;
   totalPrice: number;

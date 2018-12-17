@@ -35,7 +35,7 @@ export class MenutabComponent implements OnInit {
     private globalService: GlobalService,
     public dialog: MatDialog
   ) {
-    this.showOrderPanel = true;
+    // this.showOrderPanel = true;
     this.categories = [
       { categoryId: "Chinese" },
       { categoryId: "Indian" },
@@ -58,17 +58,18 @@ export class MenutabComponent implements OnInit {
   }
 
   openItemSelectDialogue(item): void {
-    const dialogRef = this.dialog.open(ItemSelectPopupComponent, {
-      width: "800px",
-      height: "auto",
-      data: { item }
-    });
+    this.globalService.setShowHideOrderingList(true);
+    // const dialogRef = this.dialog.open(ItemSelectPopupComponent, {
+    //   width: "800px",
+    //   height: "auto",
+    //   data: { item }
+    // });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if (result) {
-      }
-    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(result);
+    //   if (result) {
+    //   }
+    // });
   }
   loadMenubyCategory() {}
 }
