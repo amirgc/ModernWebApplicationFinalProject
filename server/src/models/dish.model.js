@@ -12,7 +12,8 @@ var dishSchema = new mongoose.Schema(
       { name: String, sizes: [
         {name: String, price: Number }
       ] }
-    ]
+    ],
+    created_date: { type: Date, default: Date.now }
   },
   {
     strict: true
