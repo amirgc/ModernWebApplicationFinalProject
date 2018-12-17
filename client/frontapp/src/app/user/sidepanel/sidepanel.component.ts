@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-sidepanel',
-  templateUrl: './sidepanel.component.html',
-  styleUrls: ['./sidepanel.component.scss']
+  selector: "app-sidepanel",
+  templateUrl: "./sidepanel.component.html",
+  styleUrls: ["./sidepanel.component.scss"]
 })
 export class SidepanelComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

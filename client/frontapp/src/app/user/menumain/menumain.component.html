@@ -1,3 +1,10 @@
-<p>
-  menumain works!
-</p>
+<div
+  class="dashboard-container"
+  fxLayout="column"
+  fxLayoutAlign="start stretch"
+>
+  <div><app-menutab></app-menutab></div>
+  <div class="sidepanel" *ngIf="showSidePanel">
+    <app-sidepanel></app-sidepanel>
+  </div>
+</div>

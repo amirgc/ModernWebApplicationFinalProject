@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MaterialComponentsModule } from "./../material-components.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { StoreModule } from "@ngrx/store";
 
 import { UsermainComponent } from "./usermain/usermain.component";
 import { HomeComponent } from "./home/home.component";
