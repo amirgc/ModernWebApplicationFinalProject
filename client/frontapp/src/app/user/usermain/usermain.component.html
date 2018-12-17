@@ -1,6 +1,11 @@
 <mat-sidenav-container class="admin-container">
   <div class="content-container" fxLayout="column">
     <app-toolbar></app-toolbar>
-    <router-outlet> </router-outlet>
+    <div class="main-container" #scrollContainer>
+      <router-outlet> </router-outlet>
+      <div class="loader" *ngIf="showLoader">
+        <div class="spinner"><mat-spinner color="brown"> </mat-spinner></div>
+      </div>
+    </div>
   </div>
 </mat-sidenav-container>

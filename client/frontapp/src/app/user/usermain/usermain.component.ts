@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { GlobalService } from "./../../_services/globale-variable.services";
 import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
@@ -7,7 +8,16 @@ import { Router, NavigationEnd } from "@angular/router";
   styleUrls: ["./usermain.component.scss"]
 })
 export class UsermainComponent implements OnInit {
-  constructor() {}
+  showLoader: boolean;
+  constructor(private globalService: GlobalService) {
+    // subscribe the value of showLoader of global service show or hide
+    // loader screen accordingly
+    this.showLoader = true ;
+    globalService.getShowLoaderValue$.subscribe(v => {
+      console.log("globalService", v);
+      this.showLoader = v;
+    });
+  }
 
   ngOnInit() {}
 }
