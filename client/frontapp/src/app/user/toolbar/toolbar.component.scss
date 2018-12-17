@@ -1,0 +1,126 @@
+@import "../../../styles/var";
+:host {
+  z-index: $z-index__main-toolbar;
+}
+.main-toolbar {
+  background: #b54f2a;
+  padding-right: 0;
+  height: 64px;
+  padding-left: 16px;
+
+  .user-button-container {
+    height: 100%;
+  }
+
+  button.fullscreen-toggle {
+    border-radius: 0;
+    padding: 0;
+    min-width: 50px;
+    max-width: 50px;
+    height: 100%;
+  }
+
+  button.menu-header {
+    border-radius: 0;
+    padding: 0 2px 0px 0px;
+    min-width: 80px;
+    max-width: 150px;
+    height: 100%;
+    color: white;
+  }
+  .menucolor {
+    color:  #b54f2a;
+  }
+}
+
+.logo {
+  float: left;
+  padding-left: 10px;
+  color: white;
+  font-family: cursive;
+  font-stretch: 45px;
+  font-variant-caps: petite-caps;
+}
+.itemnumber {
+  font-weight: bolder;
+  font-size: 14px;
+  background: #b54f2a;
+  color: white;
+  min-width: 150px;
+  border-radius: 20px;
+  padding: 4px 7px 4px 7px;
+}
+
+.title {
+  font-size: 24px;
+  padding-left: 10px;
+  font-weight: 400;
+  color: #b54f2a;
+}
+.toolbar-logoClick {
+  text-decoration: none;
+}
+.main-toolbar.mat-elevation-z2 {
+  padding-left: 0;
+}
+.sidemenu {
+  position: fixed;
+  height: 100vh;
+  width: 220px;
+  transform: translate3d(-100%, 0, 0);
+  background: #b54f2a;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: all 0.5s;
+}
+.sidemenu.active {
+  transform: translate3d(0, 0, 0);
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.5s;
+  display: none;
+}
+.active.overlay {
+  background: rgba(0, 0, 0, 0.2);
+  display: block;
+}
+.listitem {
+  color: #fff;
+}
+.toggleBtn {
+  display: none;
+  color: #fff;
+  top: 11px;
+  left: 6px;
+  opacity: 0.9;
+}
+.call {
+  display: flex;
+  margin-left: auto;
+}
+.listitem {
+  position: relative;
+}
+@media screen and (max-width: 600px) {
+  .menuitem {
+    display: none;
+  }
+  .toggleBtn {
+    display: block;
+  }
+}
+.nav-bar-header {
+  padding: 2px;
+}
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  height: 64px;
+}

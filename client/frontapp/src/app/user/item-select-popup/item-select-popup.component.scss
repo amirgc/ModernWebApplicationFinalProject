@@ -1,0 +1,62 @@
+.popupfooter{    display: flex;justify-content: space-between;flex-basis:24%; bottom:0;padding-top:0px;}
+.addtocardbutton{  display:inherit; flex:4;    }
+.addbutton{  margin: 0px 10px 10px 2px;    width: 100%;    padding: 5px;}
+.changeqtyicon{  margin-right:15px;}
+.fa{    font-size: 31px;}
+i {
+    cursor: pointer;
+    padding: 6px 7px;
+    margin-left: 2px;
+    color: #795548;
+  }
+  .example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  
+  .example-selected-value {
+    margin: 15px 0;
+  }
+  .btn-badge-cont {
+    background-color: #009688;
+    min-height: 2.7em;
+    min-width: 2.7em;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 0.3em;
+    color: white;
+    line-height: 0;
+    padding-top: 1.25em;
+    /* margin: 0.2em; */
+}
+
+.image
+{
+  width: 100%; /* or any custom size */
+  height: 100%; 
+  object-fit: contain;
+}
+.imageconatiner{
+  display: flex;
+  height: 200px;
+  width: 300px;
+  object-fit: contain;
+  }
+  
+  .imageconatiner, img{ 
+  max-height: 100%;
+  max-width: 100%;
+  }
+  .topcontent{padding-top:15px;}
+  .countholder{background:#f2f2f2;padding:5px;}
+  .countholder button:first-of-type{margin-right: 15px;}
+  .mat-dialog-actions:last-child{margin-bottom:0!important;margin-top:15px;}
+  .title{margin-bottom:12px;}
+  .ing li{list-style: none;font-size: 14px;float:left;margin-right: 10px;}
+  .ing{padding-left: 0;}
+  .sount{color:#EF1962; position:Relative;top:8px;}

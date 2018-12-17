@@ -1,0 +1,38 @@
+.content-container {
+  height: 100%;
+}
+.main-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  height: calc(100% - 64px);
+}
+
+.loader {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(250, 213, 226, 0.014);
+  opacity: 0.8;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 500px;
+  margin-left: -50px; /* -1 * image width / 2 */
+  margin-top: -50px; /* -1 * image height / 2 */
+  display: block;
+}
+@media screen and (min-width: 960px) {
+  .mat-drawer-backdrop {
+    z-index: 50 !important;
+  }
+}

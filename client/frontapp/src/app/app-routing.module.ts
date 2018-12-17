@@ -8,6 +8,7 @@ import { AuthAdminGuard } from "./_guards/auth.guard";
 import { UsermainComponent } from "./user/usermain/usermain.component";
 import { HomeComponent } from "./user/home/home.component";
 import { RegisterComponent } from "./auth/register/register.component";
+import { MenumainComponent } from "./user/menumain/menumain.component";
 
 const routes: Routes = [
   {
@@ -37,6 +38,11 @@ const routes: Routes = [
       {
         path: "",
         component: HomeComponent,
+        pathMatch: "full"
+      },
+      {
+        path: "menu",
+        component: MenumainComponent,
         pathMatch: "full"
       }
     ]

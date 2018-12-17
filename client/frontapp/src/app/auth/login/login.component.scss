@@ -1,0 +1,151 @@
+@import "../../../styles/var";
+:host {
+  display: block;
+  background: #fff url("/assets/img/backgrounds/3.jpg") no-repeat center center
+    fixed;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+.lists {
+  padding-top: 30px;
+}
+.lists li {
+  margin-bottom: 15px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+  list-style-type: circle;
+  font-weight: 500;
+}
+.login {
+  width: 90%;
+  max-width: 600px;
+  .login-header {
+    background: rgba(121, 85, 72, 0.9);
+    padding: 20px;
+    width: 50%;
+  }
+
+  .icon-container {
+    box-sizing: border-box;
+    // width: 38px;
+    height: 100%;
+    line-height: 1;
+    padding-left: 80px;
+    float: left;
+  }
+  .icon {
+    background: url("https://cdn.sstatic.net/img/openid/universal-login-sprite.svg?v=3ca03e653513");
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+  }
+  .text {
+    padding-right: 89px;
+  }
+  .login-content {
+    padding: 15px 0;
+    mat-input-container {
+      width: 100%;
+      margin: 6px 0;
+    }
+    .extra-options {
+      margin: 16px 0 32px;
+      .remember-me {
+        color: #777;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: #fff;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .note {
+      color: #777;
+      margin: 24px 0 0;
+      text-align: center;
+    }
+  }
+}
+.divider {
+  text-align: center;
+}
+.forminner {
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  background: #fff;
+}
+.gp {
+  background: #d34836;
+}
+
+.loginlink {
+  color: rgb(121, 85, 72);
+  font-weight: 700;
+  display: inline-block;
+  margin-right: 10px;
+}
+.signInOpt,
+.socialLogin {
+  padding-left: 25px;
+}
+.block-button {
+  width: 100%;
+}
+.signInOpt {
+  font-size: 14px;
+  color: #c5c3c3;
+  font-weight: 500;
+}
+.error-message {
+  position: relative;
+}
+.closebtn {
+  position: absolute;
+  top: 2px;
+  right: 0;
+}
+.forgot-password {
+  font-size: 14px;
+}
+.tag {
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+.note {
+  color: #bbb8b7 !important;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.note a {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: normal;
+}
+@media screen and (max-width: 800px) {
+  .login-header {
+    display: none !important;
+  }
+  .forminner {
+    width: 100% !important;
+    max-width: initial !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  button.loginBtn {
+    width: 100%;
+    display: block;
+  }
+  .signInOpt {
+    margin-top: 20px;
+    margin-bottom: 15px;
+  }
+  .signInOpt {
+    margin-left: 0;
+  }
+}

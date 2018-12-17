@@ -1,0 +1,70 @@
+<div [@showorderpanel]="showpanel" class="side-panel-inner1">
+  <div class="orderpanelcontainer">
+    <div class="full"><h3>Your Order</h3></div>
+    <div class="full" *ngIf="!toggleCheckoutPlaceorderButton">
+      <button
+        mat-raised-button
+        color="primary"
+        class="chkbutton"
+        (click)="goToCheckout()"
+      >
+        Check Out
+      </button>
+    </div>
+    <div class="orderbody">
+      <div fxFlex class="mat-elevation-z2">
+        <app-scrollbar>
+          <table
+            class="table"
+            [class.table-hover]="tableHover"
+            [class.table-striped]="tableStriped"
+            [class.table-condensed]="tableCondensed"
+            [class.table-bordered]="tableBordered"
+            style="overflow-y: scroll; display: block; max-height: 465px"
+          >
+            <thead>
+              <tr>
+                <th>Dish</th>
+                <th>Qty</th>
+                <th>Amount</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="taxable">Subtotal Amount</td>
+                <td>-</td>
+                <td>{{ taxableAmount }}</td>
+                <td></td>
+              </tr>
+              <tr *ngFor="let discount of discounts">
+                <td>{{ discount.key }}</td>
+                <td>-</td>
+                <td>{{ discount.value }}</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Delivery Charge @ 10%</td>
+                <td>-</td>
+                <td>{{ deliveryCharge }}</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>VAT @ 13%</td>
+                <td>-</td>
+                <td>{{ vatAmount }}</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="final">Net Payable Amount</td>
+                <td class="final">{{ totalItemInOrders }}</td>
+                <td class="final">{{ grossAmount }}</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </app-scrollbar>
+      </div>
+    </div>
+  </div>
+</div>

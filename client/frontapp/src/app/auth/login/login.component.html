@@ -1,40 +1,82 @@
-<form class="example-form" (submit)="login()">
-  <div>
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="E-Mail or UserName"
-        type="text"
-        name="loginmodel.email"
-        [(ngModel)]="loginmodel.email"
-        #myControl="ngModel"
-        required
-      />
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Password"
-        type="password"
-        name="loginmodel.password"
-        #myControl="ngModel"
-        [(ngModel)]="loginmodel.password"
-        required
-      />
-    </mat-form-field>
-  </div>
+<div fxLayout="column" fxLayoutAlign="center center" style="height: 100%;">
+  <div class="login mat-elevation-z12">
+    <div fxLayout="row">
+      <div class="forminner" fxFlex.gt-xs="55">
+        <form #form="ngForm" (submit)="login()">
+          <div class="loading-overlay" *ngIf="loading">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </div>
 
-  <div>
-    <button
-      color="primary"
-      mat-raised-button
-      type="submit"
-      value="submit"
-      [disabled]="!myControl.valid"
-    >
-      SIGN IN
-    </button>
+          <div
+            class="login-content"
+            fxLayout="column"
+            fxLayoutAlign="start stretch"
+          >
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="E-Mail or UserName"
+                type="text"
+                name="email"
+                required
+                [(ngModel)]="loginmodel.email"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Password"
+                type="password"
+                name="password"
+                required
+                [(ngModel)]="loginmodel.password"
+              />
+            </mat-form-field>
+            <div
+              class="extra-options"
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <mat-checkbox class="remember-me">Remember Me</mat-checkbox>
+              <a class="forgot-password" [routerLink]="['/forgot-password']"
+                >Forgot Password?</a
+              >
+            </div>
+
+            <div fxLayout="column" class="block-button">
+              <button
+                color="primary"
+                mat-raised-button
+                [disabled]="!form.valid"
+                type="submit"
+                value="submit"
+              >
+                SIGN IN
+              </button>
+            </div>
+
+            <div class="error-message" *ngIf="errormessage">
+              <div class="error-text" fxLayout="row">
+                {{ errormessage }}
+                <div fxLayout="row" fxLayoutAlign="start center">
+                  <button
+                    class="closebtn"
+                    type="button"
+                    mat-icon-button
+                    (click)="error = false"
+                  >
+                    <mat-icon class="close">close</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-</form>
+  <div class="note">
+    Don't have an account? /
+    <a [routerLink]="['/register']">Click here to create one</a>
+  </div>
+</div>
