@@ -34,13 +34,13 @@
   animation-fill-mode: forwards;
   animation-duration: 0.5s;
   animation-delay: 0.5s;
-  background: #b54f2a;
+  background: #c26847;
   z-index: 9999;
   pointer-events: none;
 }
 
 .input-group input.form-control {
-  border-color: #b54f2a;
+  border-color: #c26847;
   box-shadow: none;
 }
 
@@ -60,7 +60,7 @@
 }
 
 h1.title {
-  color: #795548;
+  color: #c26847;
   text-align: center;
   font-size: 5vw;
 }
@@ -76,7 +76,7 @@ h1.title {
 .form-group select.form-control {
   font-size: 17px;
   outline: none;
-  border: 1px solid #795548;
+  border: 1px solid #c26847;
   padding: 11px 20px;
   height: 46px;
 }
@@ -84,13 +84,13 @@ h1.title {
 .form-group textarea.form-control {
   font-size: 17px;
   outline: none;
-  border: 1px solid #795548;
+  border: 1px solid #c26847;
   padding: 15px 20px;
 }
 
 .input-group input.form-control {
   outline: none;
-  border: 1px solid #795548;
+  border: 1px solid #c26847;
   border-left: 0;
   padding: 11px 12px;
   height: 46px;
@@ -98,38 +98,47 @@ h1.title {
 .input-group-addon:first-child,
 .input-group-addon {
   background: #fff;
-  border-color: #795548;
-  color: #795548;
+  border-color: #c26847;
+  color: #c26847;
   padding: 9px 15px;
   font-size: 24px;
 }
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.error-message {
-  background-color: #fce4e4;
-  border: 1px solid #fcc2c3;
-  float: left;
-  padding: 20px 30px;
-  margin-top: 10px;
-}
-.error-text {
-  color: #cc0033;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 13px;
+.btn {
   font-weight: bold;
-  line-height: 20px;
-  text-shadow: 1px 1px rgba(250, 250, 250, 0.3);
+  padding: 12px 20px;
+  height: 46px;
 }
 
-.mat-progress-spinner circle,
-.mat-spinner circle {
-  stroke: #b54f2a;
+h2.title {
+  color: #c26847;
+  font-size: 4vw;
+}
+
+.float-left {
+  float: left;
+}
+.floatright {
+  float: right;
+  padding: 5px;
+}
+h3.title,
+input.title {
+  margin: 15px 0;
+  color: #c26847;
+  font-size: 30px;
+  direction: ltr;
+}
+
+h3.title.preload {
+  color: #c26847;
+  background: #c26847;
+  width: 35%;
+  direction: ltr;
+}
+
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary,
+.mat-raised-button.mat-primary {
+  background-color: #c26847;
 }
