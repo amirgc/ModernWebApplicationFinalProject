@@ -8,6 +8,8 @@ import { ScrollbarModule } from "./scrollbar/scrollbar.module";
 import { UsermainComponent } from "./usermain/usermain.component";
 import { HomeComponent } from "./home/home.component";
 import { RouterModule } from "@angular/router";
+import { FormsModule } from "@angular/forms";
+
 import { ToolbarComponent } from "./toolbar/toolbar.component";
 import { SidepanelComponent } from "./sidepanel/sidepanel.component";
 import { MenutabComponent } from "./menutab/menutab.component";
@@ -33,6 +35,7 @@ import { DishListService } from "./menutab/dish-list.service";
     RouterModule,
     MaterialComponentsModule,
     FlexLayoutModule,
+    FormsModule,
     ScrollbarModule
   ],
   providers: [DishListService]

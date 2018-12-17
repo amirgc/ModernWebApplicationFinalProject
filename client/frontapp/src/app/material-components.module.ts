@@ -25,6 +25,7 @@ import {
   MatToolbarModule,
   MatTooltipModule
 } from "@angular/material";
+import { MatRadioModule } from "@angular/material/radio";
 
 @NgModule({
   imports: [CommonModule],
@@ -52,7 +53,8 @@ import {
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatRippleModule
+    MatRippleModule,
+    MatRadioModule
   ]
 })
 export class MaterialComponentsModule {}

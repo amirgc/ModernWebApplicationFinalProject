@@ -1,3 +1,102 @@
-<p>
-  item-select-popup works!
-</p>
+<mat-card-title>
+  <div class="title">{{ selectedDish.name }}</div>
+</mat-card-title>
+<mat-divider></mat-divider>
+<mat-card-content fxLayout="column">
+  <div class="topcontent" fxLayout="row">
+    <div class="content-left" fxFlex="55">
+      <div class="imageconatiner"><img src="{{itemimage}}" /></div>
+      <mat-dialog-actions>
+        <mat-radio-group
+          class="example-radio-group"
+          [(ngModel)]="selectedItemType"
+        >
+          <strong
+            >Select Dish
+            Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong
+          >
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="
+              let productType of selectedDish.types;
+              let idx = index
+            "
+            [value]="productType"
+            [checked]="idx === 0"
+            (change)="dishChanges($event)"
+          >
+            {{ productType.name }}
+          </mat-radio-button>
+        </mat-radio-group>
+        <mat-radio-group
+          class="example-radio-group"
+          [(ngModel)]="selectedItemSize"
+        >
+          <strong>Select Dish Size</strong>
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="
+              let productSize of selectedItemType.sizes;
+              let idx = index
+            "
+            [value]="productSize"
+            [checked]="idx === 0"
+          >
+            {{ productSize.name }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-dialog-actions>
+    </div>
+
+    <div class="content-right" fxFlex="45">
+      <h3>Description</h3>
+      {{ description }}
+      <hr />
+      <h3>Ingredients</h3>
+      {{ ingredientsDisplayText }}
+    </div>
+  </div>
+  <div>
+    <span style="color:blue">{{ message }}</span>
+  </div>
+
+  <div class="popupfooter" fxLayout="row">
+    <div class="changeqtyicon" fxFlex="45">
+      <div class="countholder">
+        <button
+          mat-icon-button
+          mat-mini-fab
+          color="primary"
+          (click)="changeQuantity(-1)"
+        >
+          <mat-icon> remove</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          mat-mini-fab
+          color="primary"
+          (click)="changeQuantity(1)"
+        >
+          <mat-icon> add</mat-icon>
+        </button>
+        <p class="i floatright">
+          <span class="sount">Rs. {{ selectedItemSize.price * qty }} </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="addtocardbutton" fxFlex="55">
+      <button
+        mat-raised-button
+        color="primary"
+        class="addbutton"
+        (click)="addItemToCart()"
+      >
+        <div class="float-left btn-badge-cont ng-binding" color="assent">
+          {{ qty }}
+        </div>
+        Add To Cart
+      </button>
+    </div>
+  </div>
+</mat-card-content>
