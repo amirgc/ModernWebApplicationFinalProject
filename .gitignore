@@ -98,3 +98,5 @@ mytest/src/tsconfig.spec.json
 mytest/src/tslint.json
 mytest/tsconfig.json
 mytest/tslint.json
+mytest/src/app/s/s.component.ts
+mytest/src/app/s/s.component.spec.ts

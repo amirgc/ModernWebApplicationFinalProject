@@ -9,7 +9,9 @@ const DbConstant = require("../../utils/dbConstant").kind;
  * @param {*} res 
  */
 function CreateDish(req, res) {
-  console.log("Creating Dish");
+  console.log("Creating Dish -- start log" + Date.now()) ;
+  console.log(req);
+  console.log("Creating Dish -- end log" + Date.now()) ;
   DishService.createDish(req)
     .then(token => {
       res.status(200).send(token);
