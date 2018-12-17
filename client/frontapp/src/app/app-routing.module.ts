@@ -9,6 +9,7 @@ import { UsermainComponent } from "./user/usermain/usermain.component";
 import { HomeComponent } from "./user/home/home.component";
 import { RegisterComponent } from "./auth/register/register.component";
 import { MenumainComponent } from "./user/menumain/menumain.component";
+import { OrderComponent } from "./admin/order/order.component";
 
 const routes: Routes = [
   {
@@ -28,6 +29,11 @@ const routes: Routes = [
         component: DashboardComponent,
         pathMatch: "full",
         canActivate: [AuthAdminGuard]
+      },
+      {
+        path: "orders",
+        component: OrderComponent,
+        pathMatch: "full"
       }
     ]
   },
