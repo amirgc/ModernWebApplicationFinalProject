@@ -1,6 +1,13 @@
 .content-container {
   height: 100%;
 }
+.main-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  height: calc(100% - 64px);
+}
+
 .loader {
   position: fixed;
   height: 100%;

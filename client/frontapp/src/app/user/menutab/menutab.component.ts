@@ -1,4 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+
+import { ItemSelectPopupComponent } from "./../item-select-popup/item-select-popup.component";
+
 import { GlobalService } from "./../../_services/globale-variable.services";
 import { DishListService } from "./../../_services/dish-list.service";
 import {
@@ -28,9 +32,16 @@ export class MenutabComponent implements OnInit {
   categories = [];
   constructor(
     private dishListService: DishListService,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    public dialog: MatDialog
   ) {
     this.showOrderPanel = true;
+    this.categories = [
+      { categoryId: "Chinese" },
+      { categoryId: "Indian" },
+      { categoryId: "Thai" },
+      { categoryId: "Italian" }
+    ];
     globalService.getShowHideOrderingList$.subscribe(value => {
       this.showOrderPanel = value;
     });
@@ -45,7 +56,19 @@ export class MenutabComponent implements OnInit {
       this.globalService.setShowLoader(false);
     });
   }
-  loadMenubyCategory() {
-    this.categories = [{ categoryId: "Chinese" }, { categoryId: "Indian" }];
+
+  openItemSelectDialogue(item): void {
+    const dialogRef = this.dialog.open(ItemSelectPopupComponent, {
+      width: "800px",
+      height: "auto",
+      data: { item }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result) {
+      }
+    });
   }
+  loadMenubyCategory() {}
 }

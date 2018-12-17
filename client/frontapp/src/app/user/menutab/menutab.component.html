@@ -5,4 +5,24 @@
       label="{{category.categoryId}}"
     ></mat-tab>
   </mat-tab-group>
+  <div class="container">
+    <div class="menuContainer" fxLayout="row" fxLayoutAlign="start center">
+      <div class="menu" fxFlex="30" *ngFor="let dish of selectedDishList">
+        <div class="menuInner">
+          <div class="menu-name">{{ dish.Name }}</div>
+          <div class="item"><img src="{{dish.Image}}" /></div>
+          <div class="description">{{ dish.Description }}</div>
+          <div class="menu-footer" div fxLayout="row" fxLayoutAlign="end none">
+            <button
+              mat-raised-button
+              class="menu-button"
+              (click)="openItemSelectDialogue(dish)"
+            >
+              Add To Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
