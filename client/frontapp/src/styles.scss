@@ -34,13 +34,13 @@
   animation-fill-mode: forwards;
   animation-duration: 0.5s;
   animation-delay: 0.5s;
-  background: #795548;
+  background: #b54f2a;
   z-index: 9999;
   pointer-events: none;
 }
 
 .input-group input.form-control {
-  border-color: #ef1962;
+  border-color: #b54f2a;
   box-shadow: none;
 }
 
@@ -127,4 +127,9 @@ body {
   font-weight: bold;
   line-height: 20px;
   text-shadow: 1px 1px rgba(250, 250, 250, 0.3);
+}
+
+.mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #b54f2a;
 }
