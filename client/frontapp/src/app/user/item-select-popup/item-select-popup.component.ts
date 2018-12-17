@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-item-select-popup',
-  templateUrl: './item-select-popup.component.html',
-  styleUrls: ['./item-select-popup.component.scss']
+  selector: "app-item-select-popup",
+  templateUrl: "./item-select-popup.component.html",
+  styleUrls: ["./item-select-popup.component.scss"]
 })
 export class ItemSelectPopupComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

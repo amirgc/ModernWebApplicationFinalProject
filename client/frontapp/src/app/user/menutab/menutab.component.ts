@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { ItemSelectPopupComponent } from "./../item-select-popup/item-select-popup.component";
 
 import { GlobalService } from "./../../_services/globale-variable.services";
-import { DishListService } from "./../../_services/dish-list.service";
+import { DishListService } from "./dish-list.service";
 import {
   trigger,
   state,
@@ -49,6 +49,9 @@ export class MenutabComponent implements OnInit {
 
   ngOnInit() {
     this.globalService.setShowLoader(true);
+    this.dishListService.getDishList1().subscribe(result => {
+      console.log(result);
+    });
     this.dishListService.getDishList().subscribe(result => {
       this.allDishList = result;
       this.selectedDishList = this.allDishList;
@@ -59,17 +62,17 @@ export class MenutabComponent implements OnInit {
 
   openItemSelectDialogue(item): void {
     this.globalService.setShowHideOrderingList(true);
-    // const dialogRef = this.dialog.open(ItemSelectPopupComponent, {
-    //   width: "800px",
-    //   height: "auto",
-    //   data: { item }
-    // });
+    const dialogRef = this.dialog.open(ItemSelectPopupComponent, {
+      width: "800px",
+      height: "auto",
+      data: { item }
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(result);
-    //   if (result) {
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result) {
+      }
+    });
   }
   loadMenubyCategory() {}
 }
