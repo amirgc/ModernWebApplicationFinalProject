@@ -15,6 +15,8 @@ import { MenumainComponent } from "./menumain/menumain.component";
 
 import { ItemSelectPopupComponent } from "./item-select-popup/item-select-popup.component";
 
+import { DishListService } from "./menutab/dish-list.service";
+
 @NgModule({
   declarations: [
     UsermainComponent,
@@ -25,12 +27,14 @@ import { ItemSelectPopupComponent } from "./item-select-popup/item-select-popup.
     MenumainComponent,
     ItemSelectPopupComponent
   ],
+  entryComponents: [ItemSelectPopupComponent],
   imports: [
     CommonModule,
     RouterModule,
     MaterialComponentsModule,
     FlexLayoutModule,
     ScrollbarModule
-  ]
+  ],
+  providers: [DishListService]
 })
 export class UserModule {}

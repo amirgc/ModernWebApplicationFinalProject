@@ -1,4 +1,4 @@
-import { environment } from "../../environments/environment";
+import { environment } from "../../../environments/environment";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
@@ -12,6 +12,11 @@ export class DishListService {
   constructor(private http: HttpClient) {}
 
   getDishList(): Observable<any> {
+    return this.http.get(this.httpRequestUrl + "dishes", {
+      headers: this.headers
+    });
+  }
+  getDishList1(): Observable<any> {
     return this.http.get(
       "https://api.tsfoodland.com//api/Dish/CreateDishList",
       { headers: this.headers }

@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ItemSelectPopupComponent } from './item-select-popup.component';
+import { ItemSelectPopupComponent } from "./item-select-popup.component";
 
-describe('ItemSelectPopupComponent', () => {
+describe("ItemSelectPopupComponent", () => {
   let component: ItemSelectPopupComponent;
   let fixture: ComponentFixture<ItemSelectPopupComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemSelectPopupComponent ]
-    })
-    .compileComponents();
+      declarations: [ItemSelectPopupComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('ItemSelectPopupComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -16,7 +16,6 @@ import { LoginComponent } from "./auth/login/login.component";
 import { AuthCompleteService } from "./auth/authcomplete/authcomplete.service";
 import { AuthAdminGuard } from "./_guards/auth.guard";
 import { RegisterComponent } from "./auth/register/register.component";
-import { DishListService } from "./_services/dish-list.service";
 
 // service
 
@@ -36,12 +35,7 @@ import { GlobalService } from "./_services/globale-variable.services";
     UserModule,
     AdminModule
   ],
-  providers: [
-    AuthCompleteService,
-    AuthAdminGuard,
-    GlobalService,
-    DishListService
-  ],
+  providers: [AuthCompleteService, AuthAdminGuard, GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
