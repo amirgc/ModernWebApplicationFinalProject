@@ -24,10 +24,11 @@ function FindAllOrders(req, res) {
 
 function AddTestOrders(req, res) {
     console.log("Add Orders");
-    OrderService.addTestOrders()
+    console.log("yyy -",req.body);
+    OrderService.addTestOrders(req,res)
         .then(
             orders => {
-                console.log(orders);
+                // console.log(orders);
                 let data = new Orders(orders);
                 data.save();
                 res.status(200).send({
