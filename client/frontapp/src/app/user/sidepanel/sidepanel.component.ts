@@ -2,6 +2,16 @@ import { Component, OnInit, OnChanges, Inject, Input } from "@angular/core";
 import { GlobalService } from "./../../_services/globale-variable.services";
 import { Observable } from "rxjs";
 import { Store, select } from "@ngrx/store";
+import { isEmpty } from "lodash";
+import { MatSnackBar } from "@angular/material";
+
+import { OrderLineModel } from "src/app/admin/order/orderLineModel";
+import { State } from "./../../redux/order.state";
+import * as OrderActions from "./../../redux/orders.actions";
+
+import { AuthCompleteService } from "./../../auth/authcomplete/authcomplete.service";
+import { Router } from "@angular/router";
+import { OrderService } from "./order.service";
 import {
   trigger,
   state,
@@ -9,14 +19,6 @@ import {
   transition,
   style
 } from "@angular/animations";
-
-import { isEmpty } from "lodash";
-import { OrderLineModel } from "src/app/admin/order/orderLineModel";
-import { State } from "./../../redux/order.state";
-import * as OrderActions from "./../../redux/orders.actions";
-
-import { AuthCompleteService } from "./../../auth/authcomplete/authcomplete.service";
-import { Router } from "@angular/router";
 
 @Component({
   selector: "app-sidepanel",
@@ -44,15 +46,19 @@ export class SidepanelComponent implements OnInit {
   deliveryCharge = "0.00";
   vatAmount = "0.00";
   grossAmount = "0.00";
+  orderLinesData: OrderLineModel[];
 
   constructor(
     private globalService: GlobalService,
     private store: Store<State>,
     private authCompleteService: AuthCompleteService,
-    private router: Router
+    private router: Router,
+    private orderService: OrderService,
+    public snackBar: MatSnackBar
   ) {
     this.orderLines = store.pipe(select("order"));
     this.orderLines.subscribe(data => {
+      this.orderLinesData = data;
       this.netAmount = data.map(x => x.amount).reduce((a, b) => a + b, 0);
       this.refreshNewChanges();
     });
@@ -81,8 +87,22 @@ export class SidepanelComponent implements OnInit {
     const token = currentUser && currentUser.token;
     if (token) {
       this.authCompleteService.getUserInfo(token).subscribe(response => {
-        if (response.Email) {
-          // This means already logged-in
+        console.log(response);
+        if (response.email) {
+          // Logic to post order to the service
+          const orderDetails = {
+            totalAmount: this.grossAmount,
+            user: response,
+            status: "Order Placed",
+            orderline: this.orderLinesData
+          };
+          this.orderService.sendOrder(orderDetails).subscribe(data => {
+            console.log(data);
+            this.store.dispatch(new OrderActions.RemoveOrderAllLine());
+            this.snackBar.open("Order Placed Successfully !!!", "Thank You", {
+              duration: 2000
+            });
+          });
         } else {
           // This means token expire
           localStorage.clear();
