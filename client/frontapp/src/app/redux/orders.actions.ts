@@ -16,10 +16,5 @@ export class RemoveOrderLine implements Action {
   constructor(public payload: number) {}
 }
 
-export class TotalAmount implements Action {
-  readonly type = TOTAL_AMOUNT;
-
-  constructor() {}
-}
 
 export type Actions = AddOrderLine | RemoveOrderLine;

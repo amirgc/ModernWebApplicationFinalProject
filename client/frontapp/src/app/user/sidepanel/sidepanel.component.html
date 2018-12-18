@@ -48,12 +48,6 @@
                 <td>{{ taxableAmount }}</td>
                 <td></td>
               </tr>
-              <tr *ngFor="let discount of discounts">
-                <td>{{ discount.key }}</td>
-                <td>-</td>
-                <td>{{ discount.value }}</td>
-                <td></td>
-              </tr>
               <tr>
                 <td>Delivery Charge @ 10%</td>
                 <td>-</td>
@@ -68,7 +62,7 @@
               </tr>
               <tr>
                 <td class="final">Net Payable Amount</td>
-                <td class="final">{{ totalItemInOrders }}</td>
+                <td class="final">-</td>
                 <td class="final">{{ grossAmount }}</td>
                 <td></td>
               </tr>
