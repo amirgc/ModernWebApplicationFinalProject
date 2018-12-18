@@ -12,6 +12,10 @@ import {
   transition,
   style
 } from "@angular/animations";
+import { Observable } from "rxjs";
+import { OrderLineModel } from "src/app/admin/order/orderLineModel";
+import { Store, select } from "@ngrx/store";
+import { State } from "./../../redux/order.state";
 
 @Component({
   selector: "app-menutab",
@@ -30,10 +34,12 @@ export class MenutabComponent implements OnInit {
   selectedDishList: any;
   showOrderPanel: boolean;
   categories = [];
+  orderLines: Observable<OrderLineModel[]>;
   constructor(
     private dishListService: DishListService,
     private globalService: GlobalService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private store: Store<State>
   ) {
     // this.showOrderPanel = true;
     this.categories = [
@@ -44,6 +50,12 @@ export class MenutabComponent implements OnInit {
     ];
     globalService.getShowHideOrderingList$.subscribe(value => {
       this.showOrderPanel = value;
+    });
+    this.orderLines = store.pipe(select("order"));
+    this.orderLines.subscribe(res => {
+      if (res.length > 0) {
+        this.globalService.setShowHideOrderingList(true);
+      }
     });
   }
 
