@@ -16,10 +16,10 @@
         <app-scrollbar>
           <table
             class="table"
-            [class.table-hover]="tableHover"
-            [class.table-striped]="tableStriped"
-            [class.table-condensed]="tableCondensed"
-            [class.table-bordered]="tableBordered"
+            [class.table-hover]="true"
+            [class.table-striped]="true"
+            [class.table-condensed]="true"
+            [class.table-bordered]="true"
             style="overflow-y: scroll; display: block; max-height: 465px"
           >
             <thead>
@@ -31,16 +31,21 @@
               </tr>
             </thead>
             <tbody>
+              <tr *ngFor="let row of (orderLines | async); let i = index">
+                <td>{{ row.size }} {{ row.type }} {{ row.dish }}</td>
+                <td>{{ row.qty }}</td>
+                <td>{{ row.amount }}</td>
+                <td class="icon">
+                  <i
+                    class="fa fa-times remove"
+                    (click)="removeItemFromCart(i)"
+                  ></i>
+                </td>
+              </tr>
               <tr>
                 <td class="taxable">Subtotal Amount</td>
                 <td>-</td>
                 <td>{{ taxableAmount }}</td>
-                <td></td>
-              </tr>
-              <tr *ngFor="let discount of discounts">
-                <td>{{ discount.key }}</td>
-                <td>-</td>
-                <td>{{ discount.value }}</td>
                 <td></td>
               </tr>
               <tr>
@@ -57,7 +62,7 @@
               </tr>
               <tr>
                 <td class="final">Net Payable Amount</td>
-                <td class="final">{{ totalItemInOrders }}</td>
+                <td class="final">-</td>
                 <td class="final">{{ grossAmount }}</td>
                 <td></td>
               </tr>

@@ -49,7 +49,7 @@ export class MenutabComponent implements OnInit {
 
   ngOnInit() {
     this.globalService.setShowLoader(true);
-     this.dishListService.getDishList().subscribe(result => {
+    this.dishListService.getDishList().subscribe(result => {
       this.allDishList = result;
       this.selectedDishList = this.allDishList;
       console.log(result);
@@ -58,7 +58,6 @@ export class MenutabComponent implements OnInit {
   }
 
   openItemSelectDialogue(item): void {
-    this.globalService.setShowHideOrderingList(true);
     const dialogRef = this.dialog.open(ItemSelectPopupComponent, {
       width: "800px",
       height: "auto",
@@ -66,8 +65,8 @@ export class MenutabComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if (result) {
+      if (result > 0) {
+        this.globalService.setShowHideOrderingList(true);
       }
     });
   }
