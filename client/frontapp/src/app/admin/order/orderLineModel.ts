@@ -1,11 +1,27 @@
 export class OrderLineModel {
     _id: String;
-    Orderlineid: number;
-    Amount: number;
-    Dish: String;
+    amount: number;
+    dish: String;
     qty: number;
-    Rate: number;
-    Size: String;
-    Type: String;
-    UoM: String;
-}
+    rate: number;
+    size: String;
+    type: String;
+    uom: String;
+    constructor(
+      amount: number,
+      dish: String,
+      qty: number,
+      rate: number,
+      size: String,
+      type: String,
+      uom: String
+    ) {
+      this.amount = amount;
+      this.dish = dish;
+      this.qty = qty;
+      this.rate = rate;
+      this.size = size;
+      this.type = type;
+      this.uom = uom;
+    }
+  }

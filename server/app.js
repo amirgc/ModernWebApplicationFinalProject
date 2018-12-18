@@ -4,6 +4,8 @@ var express = require("express");
 var path = require("path");
 process.env.PWD = process.env.PWD || path.resolve(__dirname);
 var cookieParser = require("cookie-parser");
+var bodyParser = require('body-parser');
+
 var logger = require("morgan");
 const envConfig = require(`${process.env.PWD}/config/env/envConf`);
 
@@ -27,6 +29,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 
 // Include all routes
 require(`./helpers/routes`).route(app);

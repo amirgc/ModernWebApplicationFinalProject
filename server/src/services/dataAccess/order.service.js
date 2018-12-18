@@ -1,9 +1,8 @@
 var mongoose = require("mongoose");
 var Orders = mongoose.model("Orders");
 
-function addTestOrders(req) {
+function addTestOrders(req,res) {
     return new Promise(function (resolve, reject) {
-
         let order = new Orders({
             totalAmount: 700,
             userid: 'Ranjan',
