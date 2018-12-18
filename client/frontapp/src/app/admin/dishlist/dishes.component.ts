@@ -60,9 +60,9 @@ export class DishesComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
+      // if (result === 1) {
         this.loadData();
-      }
+      // }
     });
   }
 
