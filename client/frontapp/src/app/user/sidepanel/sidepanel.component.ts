@@ -2,15 +2,9 @@ import { Component, OnInit, OnChanges, Inject, Input } from "@angular/core";
 import { GlobalService } from "./../../_services/globale-variable.services";
 import { Observable } from "rxjs";
 import { Store, select } from "@ngrx/store";
-import {
-  trigger,
-  state,
-  animate,
-  transition,
-  style
-} from "@angular/animations";
-
 import { isEmpty } from "lodash";
+import { MatSnackBar } from "@angular/material";
+
 import { OrderLineModel } from "src/app/admin/order/orderLineModel";
 import { State } from "./../../redux/order.state";
 import * as OrderActions from "./../../redux/orders.actions";
@@ -18,6 +12,13 @@ import * as OrderActions from "./../../redux/orders.actions";
 import { AuthCompleteService } from "./../../auth/authcomplete/authcomplete.service";
 import { Router } from "@angular/router";
 import { OrderService } from "./order.service";
+import {
+  trigger,
+  state,
+  animate,
+  transition,
+  style
+} from "@angular/animations";
 
 @Component({
   selector: "app-sidepanel",
@@ -52,7 +53,8 @@ export class SidepanelComponent implements OnInit {
     private store: Store<State>,
     private authCompleteService: AuthCompleteService,
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    public snackBar: MatSnackBar
   ) {
     this.orderLines = store.pipe(select("order"));
     this.orderLines.subscribe(data => {
@@ -89,12 +91,18 @@ export class SidepanelComponent implements OnInit {
         if (response.email) {
           // Logic to post order to the service
           const orderDetails = {
-            totalAmount: Number,
-            userid: response,
+            totalAmount: this.grossAmount,
+            user: response,
             status: "Order Placed",
             orderline: this.orderLinesData
           };
-          this.orderService.sendOrder(orderDetails);
+          this.orderService.sendOrder(orderDetails).subscribe(data => {
+            console.log(data);
+            this.store.dispatch(new OrderActions.RemoveOrderAllLine());
+            this.snackBar.open("Order Placed Successfully !!!", "Thank You", {
+              duration: 2000
+            });
+          });
         } else {
           // This means token expire
           localStorage.clear();

@@ -26,15 +26,15 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     this.orderService.getMyOrder().subscribe(res => {
-      this.data = res.data.map(x => {
-        return {
-          _id: x._id,
-          totalAmount: x.totalAmount,
-          userid: x.userid,
-          discount: x.discount,
-          status: x.status
-        };
-      });
+      // this.data = res.data.map(x => {
+      //   return {
+      //     _id: x._id,
+      //     totalAmount: x.totalAmount,
+      //     userid: x.userid,
+      //     discount: x.discount,
+      //     status: x.status
+      //   };
+      // });
 
       console.log("data", this.data);
       console.log(typeof this.data);

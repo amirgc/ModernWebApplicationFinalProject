@@ -3,7 +3,7 @@ import { OrderLineModel } from "../admin/order/orderLineModel";
 
 export const ADD_ORDERLINE = "ADD";
 export const REMOVE_ORDERLINE = "REMOVE";
-export const TOTAL_AMOUNT = "TOTAL";
+export const REMOVE_ALL_ORDERLINE = "REMOVE_ALL";
 export class AddOrderLine implements Action {
   readonly type = ADD_ORDERLINE;
 
@@ -16,5 +16,10 @@ export class RemoveOrderLine implements Action {
   constructor(public payload: number) {}
 }
 
+export class RemoveOrderAllLine implements Action {
+  readonly type = REMOVE_ALL_ORDERLINE;
 
-export type Actions = AddOrderLine | RemoveOrderLine;
+  constructor() {}
+}
+
+export type Actions = AddOrderLine | RemoveOrderLine | RemoveOrderAllLine;

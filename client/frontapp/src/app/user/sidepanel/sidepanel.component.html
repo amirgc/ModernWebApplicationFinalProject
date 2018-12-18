@@ -1,16 +1,7 @@
 <div [@showorderpanel]="showpanel" class="side-panel-inner1">
   <div class="orderpanelcontainer">
     <div class="full"><h3>Your Order</h3></div>
-    <div class="full" *ngIf="!toggleCheckoutPlaceorderButton">
-      <button
-        mat-raised-button
-        color="primary"
-        class="chkbutton"
-        (click)="goToCheckout()"
-      >
-        Check Out
-      </button>
-    </div>
+
     <div class="orderbody">
       <div fxFlex class="mat-elevation-z2">
         <app-scrollbar>
@@ -70,6 +61,16 @@
           </table>
         </app-scrollbar>
       </div>
+    </div>
+    <div class="full" *ngIf="!toggleCheckoutPlaceorderButton">
+      <button
+        mat-raised-button
+        color="primary"
+        class="chkbutton"
+        (click)="goToCheckout()"
+      >
+        Place your order
+      </button>
     </div>
   </div>
 </div>

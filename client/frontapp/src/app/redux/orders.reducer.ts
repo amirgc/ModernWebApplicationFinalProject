@@ -16,6 +16,10 @@ export function reducer(
     case OrderActions.REMOVE_ORDERLINE:
       state.splice(action.payload, 1);
       return state;
+
+    case OrderActions.REMOVE_ALL_ORDERLINE:
+      state = [];
+      return state;
     default:
       return state;
   }
