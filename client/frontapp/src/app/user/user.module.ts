@@ -18,6 +18,9 @@ import { MenumainComponent } from "./menumain/menumain.component";
 import { ItemSelectPopupComponent } from "./item-select-popup/item-select-popup.component";
 
 import { DishListService } from "./menutab/dish-list.service";
+import { OrderService } from "./sidepanel/order.service";
+
+import { reducer } from "./../redux/orders.reducer";
 
 @NgModule({
   declarations: [
@@ -36,8 +39,9 @@ import { DishListService } from "./menutab/dish-list.service";
     MaterialComponentsModule,
     FlexLayoutModule,
     FormsModule,
-    ScrollbarModule
+    ScrollbarModule,
+    StoreModule.forRoot({ order: reducer })
   ],
-  providers: [DishListService]
+  providers: [DishListService, OrderService]
 })
 export class UserModule {}

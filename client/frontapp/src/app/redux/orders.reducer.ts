@@ -1,23 +1,25 @@
-import { Action } from "@ngrx/store";
-import { Loginmodel } from "../auth/login/login.model";
-import * as LoginActions from "./orders.actions";
-
-const initialState: Loginmodel = {
-  email: "",
-  password: ""
-};
+import * as OrderActions from "./orders.actions";
+import { OrderLineModel } from "../admin/order/orderLineModel";
 
 export function reducer(
-  state: Loginmodel = initialState,
-  action: LoginActions.Actions
+  state: OrderLineModel[] = [],
+  action: OrderActions.Actions
 ) {
   switch (action.type) {
-    case LoginActions.LOGIN_USER:
-      return true;
+    case OrderActions.ADD_ORDERLINE:
+      if (state.length === 0) {
+        state.push(action.payload);
+        return state;
+      } else {
+        return [...state, action.payload];
+      }
+    case OrderActions.REMOVE_ORDERLINE:
+      state.splice(action.payload, 1);
+      return state;
 
-    case LoginActions.LOGOUT_USER:
-      // state.splice(action.payload, 1);
-      return false;
+    case OrderActions.REMOVE_ALL_ORDERLINE:
+      state = [];
+      return state;
     default:
       return state;
   }

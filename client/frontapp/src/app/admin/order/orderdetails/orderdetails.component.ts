@@ -14,6 +14,7 @@ export class OrderdetailsComponent implements OnInit {
   myData
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
+      console.log("dasd");
       let id = params.get('_id');
       this.myid = id;
       console.log("PARAM ID - ", this.myid);

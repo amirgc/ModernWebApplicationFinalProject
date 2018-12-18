@@ -4,13 +4,13 @@ import { MyoudersService } from './myouders.service';
 import { OrderModel } from './ordermodel';
 import { MatTableDataSource } from "@angular/material"
 import { Router, ActivatedRoute } from '@angular/router';
- 
-@Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
-})
 
+
+@Component({
+  selector: "app-order",
+  templateUrl: "./order.component.html",
+  styleUrls: ["./order.component.css"]
+})
 export class OrderComponent implements OnInit {
   ELEMENT_DATA: OrderModel[];
   dataSource = new MatTableDataSource<OrderModel>();
@@ -31,9 +31,6 @@ export class OrderComponent implements OnInit {
         }
         return test;
       })
-
-      // console.log("data", this.data);
-      // console.log(typeof this.data);
       this.dataSource = new MatTableDataSource<OrderModel>(this.data);
     });
   }

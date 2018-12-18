@@ -12,6 +12,10 @@ import {
   transition,
   style
 } from "@angular/animations";
+import { Observable } from "rxjs";
+import { OrderLineModel } from "src/app/admin/order/orderLineModel";
+import { Store, select } from "@ngrx/store";
+import { State } from "./../../redux/order.state";
 
 @Component({
   selector: "app-menutab",
@@ -30,10 +34,12 @@ export class MenutabComponent implements OnInit {
   selectedDishList: any;
   showOrderPanel: boolean;
   categories = [];
+  orderLines: Observable<OrderLineModel[]>;
   constructor(
     private dishListService: DishListService,
     private globalService: GlobalService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private store: Store<State>
   ) {
     // this.showOrderPanel = true;
     this.categories = [
@@ -45,11 +51,17 @@ export class MenutabComponent implements OnInit {
     globalService.getShowHideOrderingList$.subscribe(value => {
       this.showOrderPanel = value;
     });
+    this.orderLines = store.pipe(select("order"));
+    this.orderLines.subscribe(res => {
+      if (res.length > 0) {
+        this.globalService.setShowHideOrderingList(true);
+      }
+    });
   }
 
   ngOnInit() {
     this.globalService.setShowLoader(true);
-     this.dishListService.getDishList().subscribe(result => {
+    this.dishListService.getDishList().subscribe(result => {
       this.allDishList = result;
       this.selectedDishList = this.allDishList;
       console.log(result);
@@ -58,7 +70,6 @@ export class MenutabComponent implements OnInit {
   }
 
   openItemSelectDialogue(item): void {
-    this.globalService.setShowHideOrderingList(true);
     const dialogRef = this.dialog.open(ItemSelectPopupComponent, {
       width: "800px",
       height: "auto",
@@ -66,8 +77,8 @@ export class MenutabComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if (result) {
+      if (result > 0) {
+        this.globalService.setShowHideOrderingList(true);
       }
     });
   }
