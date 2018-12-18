@@ -1,20 +1,19 @@
-import { Injectable } from "@angular/core";
 import { Action } from "@ngrx/store";
-import { Loginmodel } from "../auth/login/login.model";
+import { OrderLineModel } from "../admin/order/orderLineModel";
 
-export const LOGIN_USER = "LOGIN";
-export const LOGOUT_USER = "LOGOUT";
+export const ADD_ORDERLINE = "ADD";
+export const REMOVE_ORDERLINE = "REMOVE";
 
-export class Login implements Action {
-  readonly type = LOGIN_USER;
+export class AddOrderLine implements Action {
+  readonly type = ADD_ORDERLINE;
 
-  constructor(public payload: Loginmodel) {}
+  constructor(public payload: OrderLineModel) {}
 }
 
-export class Logout implements Action {
-  readonly type = LOGOUT_USER;
+export class RemoveOrderLine implements Action {
+  readonly type = REMOVE_ORDERLINE;
 
   constructor(public payload: number) {}
 }
 
-export type Actions = Login | Logout;
+export type Actions = AddOrderLine | RemoveOrderLine;

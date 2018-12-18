@@ -31,6 +31,17 @@
               </tr>
             </thead>
             <tbody>
+              <tr *ngFor="let row of (orderLines | async); let i = index">
+                <td>{{ row.size }} {{ row.type }} {{ row.dish }}</td>
+                <td>{{ row.qty }}</td>
+                <td>{{ row.amount }}</td>
+                <td class="icon">
+                  <i
+                    class="fa fa-times remove"
+                    (click)="removeItemFromCart(row)"
+                  ></i>
+                </td>
+              </tr>
               <tr>
                 <td class="taxable">Subtotal Amount</td>
                 <td>-</td>

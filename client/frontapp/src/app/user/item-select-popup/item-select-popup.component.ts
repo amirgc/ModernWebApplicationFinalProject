@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { OrderLine } from "./../../_models/order.model";
+import { OrderLineModel } from "./../../admin/order/orderLineModel";
+import { State } from "./../../redux/order.state";
+import { Store } from "@ngrx/store";
+import * as OrderActions from "./../../redux/orders.actions";
 
 @Component({
   selector: "app-item-select-popup",
@@ -20,7 +23,8 @@ export class ItemSelectPopupComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ItemSelectPopupComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private store: Store<State>
   ) {
     this.qty = 1;
     console.log(JSON.stringify(data));
@@ -46,8 +50,22 @@ export class ItemSelectPopupComponent implements OnInit {
       this.qty = this.qty + i;
     }
   }
-
+  delTutorial(index) {
+    this.store.dispatch(new OrderActions.RemoveOrderLine(index));
+  }
   addItemToCart() {
-    this.dialogRef.close("");
+    console.log(this.selectedItemType, this.selectedItemSize);
+    const orderLine = new OrderLineModel(
+      this.selectedItemSize.price * this.qty,
+      this.selectedDish.name,
+      this.qty,
+      this.selectedItemSize.price,
+      this.selectedItemSize.size,
+      this.selectedItemType.name,
+      this.selectedDish.uom
+    );
+    console.log(orderLine);
+    this.store.dispatch(new OrderActions.AddOrderLine(orderLine));
+    // this.dialogRef.close("");
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, Inject, Input } from "@angular/core";
 import { GlobalService } from "./../../_services/globale-variable.services";
-
+import { Observable } from "rxjs";
+import { Store, select } from "@ngrx/store";
 import {
   trigger,
   state,
@@ -10,6 +11,8 @@ import {
 } from "@angular/animations";
 
 import { isEmpty } from "lodash";
+import { OrderLineModel } from "src/app/admin/order/orderLineModel";
+import { State } from "./../../redux/order.state";
 
 @Component({
   selector: "app-sidepanel",
@@ -28,6 +31,7 @@ export class SidepanelComponent implements OnInit, OnChanges {
   tableStriped: boolean;
   tableCondensed: boolean;
   tableBordered: boolean;
+  orderLines: Observable<OrderLineModel[]>;
 
   /**variable declarations */
   toggleCheckoutPlaceorderButton: boolean;
@@ -37,7 +41,12 @@ export class SidepanelComponent implements OnInit, OnChanges {
   grossAmount = "0.00";
   totalItemInOrders = 0;
 
-  constructor(private globalService: GlobalService) {}
+  constructor(
+    private globalService: GlobalService,
+    private store: Store<State>
+  ) {
+    this.orderLines = store.pipe(select("order"));
+  }
 
   @Input("showSidePanel") showpanel: boolean;
   totalPrice: number;
