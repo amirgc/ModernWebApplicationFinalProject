@@ -16,10 +16,10 @@
         <app-scrollbar>
           <table
             class="table"
-            [class.table-hover]="tableHover"
-            [class.table-striped]="tableStriped"
-            [class.table-condensed]="tableCondensed"
-            [class.table-bordered]="tableBordered"
+            [class.table-hover]="true"
+            [class.table-striped]="true"
+            [class.table-condensed]="true"
+            [class.table-bordered]="true"
             style="overflow-y: scroll; display: block; max-height: 465px"
           >
             <thead>
@@ -38,7 +38,7 @@
                 <td class="icon">
                   <i
                     class="fa fa-times remove"
-                    (click)="removeItemFromCart(row)"
+                    (click)="removeItemFromCart(i)"
                   ></i>
                 </td>
               </tr>

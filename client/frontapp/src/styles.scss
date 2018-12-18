@@ -137,10 +137,17 @@ h3.title.preload {
   direction: ltr;
 }
 
-.mat-fab.mat-primary,
+.mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent
+  .mat-radio-ripple
+  .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent:active
+  .mat-radio-persistent-ripple
+  .mat-fab.mat-primary,
 .mat-mini-fab.mat-primary,
 .mat-raised-button.mat-primary {
-  background-color: #795548;
+  background-color: #c26847;
 }
 .mat-tab-label {
   min-width: 80px !important;

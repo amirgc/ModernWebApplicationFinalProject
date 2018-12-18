@@ -13,6 +13,7 @@ import {
 import { isEmpty } from "lodash";
 import { OrderLineModel } from "src/app/admin/order/orderLineModel";
 import { State } from "./../../redux/order.state";
+import * as OrderActions from "./../../redux/orders.actions";
 
 @Component({
   selector: "app-sidepanel",
@@ -78,9 +79,12 @@ export class SidepanelComponent implements OnInit, OnChanges {
     const token = currentUser && currentUser.token;
   }
 
-  removeItemFromCart(value) {}
+  removeItemFromCart(value) {
+    this.store.dispatch(new OrderActions.RemoveOrderLine(value));
+  }
 
   getTotalPrice_(): number {
-    return 100;
+    this.orderLines.subscribe(data => console.log(data));
+    return 0;
   }
 }
