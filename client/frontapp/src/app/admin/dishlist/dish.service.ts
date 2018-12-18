@@ -19,9 +19,25 @@ export class DishService {
     );
   }
 
-  createDish(): Observable<any> {
-    console.log(this.http.request);
-    return this.http.post('http://localhost:3002/v1/dishes/create', 
+  createDish(dish): Observable<any> {
+    console.log("starting log - createDish");
+    console.log(dish);
+    return this.http.post('http://localhost:3002/v1/dishes/create', dish,
+    {headers: this.headers});
+    
+  }
+
+  updateDish(dish): Observable<any> {
+    console.log("starting log - updateDish");
+    console.log(dish);
+    return this.http.post('http://localhost:3002/v1/dishes/update', dish,
+    {headers: this.headers});
+  }
+
+  deleteDish(dish): Observable<any> {
+    console.log("starting log - deleteDish");
+    console.log(dish);
+    return this.http.post('http://localhost:3002/v1/dishes/delete', dish,
     {headers: this.headers});
   }
 }

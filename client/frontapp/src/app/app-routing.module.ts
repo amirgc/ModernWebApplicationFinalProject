@@ -9,8 +9,8 @@ import { UsermainComponent } from "./user/usermain/usermain.component";
 import { HomeComponent } from "./user/home/home.component";
 import { RegisterComponent } from "./auth/register/register.component";
 import { MenumainComponent } from "./user/menumain/menumain.component";
-import { DishlistComponent } from "./admin/dishlist/dishlist.component"
-import { DishComponent } from "./admin/dish/dish.component";
+import { DishesComponent } from "./admin/dishlist/dishes.component"
+// import { DishComponent } from "./admin/dishlist/dish.component";
 
 const routes: Routes = [
   {
@@ -33,13 +33,13 @@ const routes: Routes = [
       },
       {
         path: "dishes",
-        component: DishlistComponent,
+        component: DishesComponent,
         pathMatch: "full",
         canActivate: [AuthAdminGuard]
       },
       {
         path: "dishes/create",
-        component: DishComponent,
+        component: DishesComponent,
         pathMatch: "full",
         canActivate: [AuthAdminGuard]
       }

@@ -8,21 +8,22 @@ var url = require("url");
  * Create a new dish by given information in request
  * @param {*} req 
  */
-function createDish(req) {
-  return new Promise(function(resolve, reject) {
-    console.log("auth service createUser");
-    let dish = new Dish({
-      name: req.body.name,
-      description: req.body.description,
-      orderingPosition: req.body.orderingPosition,
-      uom: req.body.uom,
-      category: req.body.category,
-      types: req.body.types
-    });
-
-    repository.create(dish);
-    
+function createDish(data) {
+  console.log("starting log -- createDish");
+  console.log(data);
+  let dish = new Dish({
+    name: data.name,
+    description: data.description,
+    orderingPosition: data.orderingPosition,
+    uom: data.uom,
+    category: data.category,
+    type: data.type ? data.type : 0,
+    price: data.price,
+    image: data.image
   });
+
+  return repository.create(dish);
+
 }
 
 /**
@@ -30,13 +31,6 @@ function createDish(req) {
  * @param {*} req 
  */
 function findDishById(req) {
-  // return new Promise(function(resolve, reject) {
-  //   Dish.findById(req.name, function(err, dish) {
-  //     if (err) reject("There was a problem finding the dish: " + err);
-  //     if (!dish) reject("No dish found.");
-  //     resolve(dish);
-  //   });
-  // });
   return repository.retrieve(Dish, req.body.name);
 }
 
@@ -44,15 +38,27 @@ function findDishById(req) {
  * Update a dish by given information in request
  * @param {*} req 
  */
-function updateDishById(req) {
-  // return new Promise(function(resolve, reject){
-  //   Dish.updateDishById(req, function(err, dish){
-  //     if(err) reject("There was a problem updating the dish: " + err);
-  //     if(!dish) reject("No dish found.");
-  //     resolve(dish);
-  //   })
-  // })
-  return repository.update(Dish, req.body.name);
+function updateDishById(data) {
+  
+  return new Promise(function (resolve, reject) {
+    console.log("id",data._id)
+    Dish.update({ _id: data._id }, {
+      name: data.name,
+      description: data.description,
+      orderingPosition: data.orderingPosition,
+      uom: data.uom,
+      category: data.category,
+      type: data.type ? data.type : 0,
+      price: data.price,
+      image: data.image
+    }, function (err, data) {
+      //
+      if (err) { console.log(err); reject(err) }
+      resolve(data);
+    });
+  })
+
+  //return repository.update(dish, data._id);
 }
 
 /**
@@ -60,20 +66,28 @@ function updateDishById(req) {
  */
 function getAll(req) {
   console.log("Dish Service -- getAll()")
-  var url_parts = url.parse(req.url, true);
-  var query = url_parts.query;
-  return repository.list(Dish, query);
+  return repository.list(Dish, true);
 }
 
-function removeDish(req) {
-  // return new Promise(function(resolve, reject) {
-  //   Dish.deleteOne(req.name, function(err, dish){
-  //     if(err) reject("There was a problem deleting the dish: " + err);
-  //     if(!dish) reject("No dish found.");
-  //     resolve(dish);
-  //   })
-  // })
-  repository.remove(Dish, req.name);
+function removeDish(data) {
+  console.log(data);
+  return new Promise(function (resolve, reject) {
+    console.log("id",data._id)
+    Dish.findOneAndRemove({ _id: data._id }, {
+      name: data.name,
+      description: data.description,
+      orderingPosition: data.orderingPosition,
+      uom: data.uom,
+      category: data.category,
+      type: data.type ? data.type : 0,
+      price: data.price,
+      image: data.image
+    }, function (err, data) {
+      //
+      if (err) { console.log(err); reject(err) }
+      resolve(data);
+    });
+  })
 }
 
 module.exports = { createDish, findDishById, updateDishById, getAll, removeDish };
