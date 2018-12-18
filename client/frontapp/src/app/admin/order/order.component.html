@@ -1,5 +1,3 @@
-
-
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
@@ -29,15 +27,21 @@
     <td mat-cell *matCellDef="let element"> {{element.discount}} </td>
   </ng-container>
 
-  
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef> status </th>
-      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-    </ng-container>
 
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> status </th>
+    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+  </ng-container>
+ 
+ <!-- Symbol Column -->
+ <ng-container matColumnDef="mybutton">
+  <th mat-header-cell *matHeaderCellDef> Details </th>
+  
+
+  <td mat-cell *matCellDef="let element" > <button mat-button (click)= "navigate(element._id)"> Details </button></td>
+</ng-container>
  
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-

@@ -11,11 +11,12 @@ import {
   MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
   MatSortModule, MatTableModule
 } from "@angular/material";
-import {HttpClientModule} from "@angular/common/http"
+import {HttpClientModule} from "@angular/common/http";
+import { OrderdetailsComponent } from './order/orderdetails/orderdetails.component'
 
 
 @NgModule({
-    declarations: [MainComponent, DashboardComponent, DishComponent, DishlistComponent,OrderComponent],
+    declarations: [MainComponent, DashboardComponent, DishComponent, DishlistComponent,OrderComponent, OrderdetailsComponent],
     imports: [CommonModule, RouterModule, MatTableModule,
       MatPaginatorModule,
       MatSortModule,

@@ -10,6 +10,7 @@ import { HomeComponent } from "./user/home/home.component";
 import { RegisterComponent } from "./auth/register/register.component";
 import { MenumainComponent } from "./user/menumain/menumain.component";
 import { OrderComponent } from "./admin/order/order.component";
+import { OrderdetailsComponent } from "./admin/order/orderdetails/orderdetails.component";
 
 const routes: Routes = [
   {
@@ -33,7 +34,19 @@ const routes: Routes = [
       {
         path: "orders",
         component: OrderComponent,
-        pathMatch: "full"
+        pathMatch: "full",
+        children : [
+          { path : "ordersdetail",
+            component : OrderdetailsComponent,
+            pathMatch : "full"
+        }
+        ]
+      },
+      {
+        path: "orders/:_id",
+        component: OrderdetailsComponent,
+        pathMatch: "full",
+       
       }
     ]
   },
