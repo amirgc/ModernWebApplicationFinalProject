@@ -17,6 +17,7 @@ import * as OrderActions from "./../../redux/orders.actions";
 
 import { AuthCompleteService } from "./../../auth/authcomplete/authcomplete.service";
 import { Router } from "@angular/router";
+import { OrderService } from "./order.service";
 
 @Component({
   selector: "app-sidepanel",
@@ -44,15 +45,18 @@ export class SidepanelComponent implements OnInit {
   deliveryCharge = "0.00";
   vatAmount = "0.00";
   grossAmount = "0.00";
+  orderLinesData: OrderLineModel[];
 
   constructor(
     private globalService: GlobalService,
     private store: Store<State>,
     private authCompleteService: AuthCompleteService,
-    private router: Router
+    private router: Router,
+    private orderService: OrderService
   ) {
     this.orderLines = store.pipe(select("order"));
     this.orderLines.subscribe(data => {
+      this.orderLinesData = data;
       this.netAmount = data.map(x => x.amount).reduce((a, b) => a + b, 0);
       this.refreshNewChanges();
     });
@@ -81,8 +85,16 @@ export class SidepanelComponent implements OnInit {
     const token = currentUser && currentUser.token;
     if (token) {
       this.authCompleteService.getUserInfo(token).subscribe(response => {
-        if (response.Email) {
-          // This means already logged-in
+        console.log(response);
+        if (response.email) {
+          // Logic to post order to the service
+          const orderDetails = {
+            totalAmount: Number,
+            userid: response,
+            status: "Order Placed",
+            orderline: this.orderLinesData
+          };
+          this.orderService.sendOrder(orderDetails);
         } else {
           // This means token expire
           localStorage.clear();

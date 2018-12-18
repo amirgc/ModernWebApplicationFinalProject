@@ -18,6 +18,7 @@ import { MenumainComponent } from "./menumain/menumain.component";
 import { ItemSelectPopupComponent } from "./item-select-popup/item-select-popup.component";
 
 import { DishListService } from "./menutab/dish-list.service";
+import { OrderService } from "./sidepanel/order.service";
 
 import { reducer } from "./../redux/orders.reducer";
 
@@ -41,6 +42,6 @@ import { reducer } from "./../redux/orders.reducer";
     ScrollbarModule,
     StoreModule.forRoot({ order: reducer })
   ],
-  providers: [DishListService]
+  providers: [DishListService, OrderService]
 })
 export class UserModule {}
