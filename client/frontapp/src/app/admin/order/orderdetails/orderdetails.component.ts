@@ -19,14 +19,12 @@ export class OrderdetailsComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       console.log("dasd");
-      let id = params.get("_id");
+      const id = params.get("_id");
       this.myid = id;
       console.log("PARAM ID - ", this.myid);
     });
     this.myserve.getMyOrder().subscribe(res => {
-      // res.data.map(x => {
-      //   if (x._id == this.myid) this.myData = x;
-      // });
+      this.myData = res;
       console.log(this.myData);
     });
   }

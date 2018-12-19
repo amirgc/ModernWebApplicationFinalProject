@@ -5,10 +5,7 @@ function FindAllOrders(req, res) {
   console.log("Find Orders");
   OrderService.findAllOrders(req)
     .then(orders => {
-      res.status(200).send({
-        status: "sucess",
-        data: orders
-      });
+      res.status(200).send(orders);
     })
     .catch(err => {
       console.log(err);
@@ -23,10 +20,7 @@ function AddTestOrders(req, res) {
   console.log(req.body);
   OrderService.addTestOrders(req, res)
     .then(orders => {
-      res.status(200).send({
-        status: "sucess",
-        data: orders
-      });
+      res.status(200).send(orders);
     })
     .catch(err => {
       console.log(err);

@@ -32,17 +32,18 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     this.orderService.getMyOrder().subscribe(res => {
-      // this.data = res.data.map(x => {
-      //   let test = {
-      //     _id: x._id,
-      //     totalAmount: x.totalAmount,
-      //     userid: x.user.name,
-      //     discount: x.discount,
-      //     status: x.status,
-      //     mybutton: "See Details"
-      //   };
-      //   return test;
-      // });
+      console.log(res);
+      this.data = res.map(x => {
+        const test = {
+          _id: x._id,
+          totalAmount: x.totalAmount,
+          userid: x.user.name,
+          discount: x.discount,
+          status: x.status,
+          mybutton: "See Details"
+        };
+        return test;
+      });
       this.dataSource = new MatTableDataSource<OrderModel>(this.data);
     });
   }
