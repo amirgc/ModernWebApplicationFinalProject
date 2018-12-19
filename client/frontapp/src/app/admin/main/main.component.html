@@ -1,6 +1,26 @@
 <mat-sidenav-container class="admin-container">
   <mat-toolbar color="primary">
-    <span>Admin Dashboard</span> <span class="spacer"></span>
+    <span>Admin </span> <span class="spacer"></span>
   </mat-toolbar>
-  <router-outlet> </router-outlet>
+  <mat-drawer-container>
+    <mat-drawer mode="side" opened
+      ><mat-list>
+        <mat-list-item>
+          <button mat-button class="menu-header" [routerLink]="['dishes']">
+            View Dishes
+          </button></mat-list-item
+        >
+        <mat-list-item>
+          <button mat-button class="menu-header" [routerLink]="['orders']">
+            View Orders
+          </button></mat-list-item
+        >
+      </mat-list></mat-drawer
+    >
+    <mat-drawer-content>
+      <div class="container mat-elevation-z8">
+        <router-outlet> </router-outlet>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </mat-sidenav-container>

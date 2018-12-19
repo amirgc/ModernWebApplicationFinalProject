@@ -28,24 +28,6 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       {
-        path: "",
-        component: DashboardComponent,
-        pathMatch: "full",
-        canActivate: [AuthAdminGuard]
-      },
-      {
-        path: "orders",
-        component: OrderComponent,
-        pathMatch: "full",
-        children: [
-          {
-            path: "ordersdetail",
-            component: OrderdetailsComponent,
-            pathMatch: "full"
-          }
-        ]
-      },
-      {
         path: "orders/:_id",
         component: OrderdetailsComponent,
         pathMatch: "full"
@@ -61,6 +43,17 @@ const routes: Routes = [
         component: DishesComponent,
         pathMatch: "full",
         canActivate: [AuthAdminGuard]
+      },
+      {
+        path: "",
+        component: DashboardComponent,
+        pathMatch: "full",
+        canActivate: [AuthAdminGuard]
+      },
+      {
+        path: "orders",
+        component: OrderComponent,
+        pathMatch: "full"
       }
     ]
   },
