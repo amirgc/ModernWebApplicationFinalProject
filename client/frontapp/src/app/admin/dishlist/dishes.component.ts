@@ -46,8 +46,8 @@ export class DishesComponent implements OnInit {
 
   addNew(dish: Dish) {
     const dialogRef = this.dialog.open(AddDialogComponent, {
-      width: "800px",
-      height: "800px",
+      width: "700px",
+      height: "710px",
       data: { data: dish }
     });
 

@@ -30,7 +30,7 @@ function findDishById(req) {
  */
 function updateDishById(data) {
   return new Promise(function(resolve, reject) {
-    console.log("id", data._id);
+    console.log(data);
     Dish.update(
       { _id: data._id },
       {
@@ -39,8 +39,7 @@ function updateDishById(data) {
         orderingPosition: data.orderingPosition,
         uom: data.uom,
         category: data.category,
-        type: data.type ? data.type : 0,
-        price: data.price,
+        types: data.types,
         image: data.image
       },
       function(err, data) {
