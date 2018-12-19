@@ -2,6 +2,73 @@
   <h3 mat-dialog-title>Add new Dish</h3>
 
   <form class="mat-dialog-content" (ngSubmit)="(submit)" #formControl="ngForm">
+    <div *ngFor="let type of dish.types" fxLayout="row">
+      <hr style="height: 2px; border:none;color:#333;background-color:#333;" />
+      <div fxLayout="row">
+        <mat-form-field fxFlex>
+          <input
+            matInput
+            placeholder="Type Name"
+            [(ngModel)]="type.name"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </mat-form-field>
+        <button
+          type="button"
+          mat-icon-button
+          color="warn"
+          (click)="removeType(type)"
+        >
+          <mat-icon>remove</mat-icon>
+        </button>
+        <button
+          type="button"
+          mat-icon-button
+          color="primary"
+          (click)="addType()"
+        >
+          <mat-icon>add_circle</mat-icon>
+        </button>
+      </div>
+
+      <div *ngFor="let size of type.sizes" fxLayout="row">
+        <div fxLayout="row" style="margin: 0 60px">
+          <mat-form-field fxFlex>
+            <input
+              matInput
+              placeholder="Size Name"
+              [(ngModel)]="size.name"
+              [ngModelOptions]="{ standalone: true }"
+            />
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input
+              matInput
+              placeholder="Price"
+              [(ngModel)]="size.price"
+              [ngModelOptions]="{ standalone: true }"
+            />
+          </mat-form-field>
+          <button
+            type="button"
+            mat-icon-button
+            color="warn"
+            (click)="removeSize(type, size)"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button
+            type="button"
+            mat-icon-button
+            color="primary"
+            (click)="addSize(type)"
+          >
+            <mat-icon>add_circle_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="form">
       <mat-form-field color="accent">
         <input

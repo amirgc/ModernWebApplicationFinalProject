@@ -13,11 +13,10 @@ export class AuthAdminGuard implements CanActivate {
   canActivate(): Observable<boolean> | boolean {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const token = currentUser && currentUser.token;
-    console.log("AuthAdminGuard", token);
+
     if (token) {
       this.authCompleteService.getUserInfo(token).subscribe(
         response => {
-          console.log("authCompleteService", response);
           if (response.role === "admin") {
             // This means already logged-in
             return true;

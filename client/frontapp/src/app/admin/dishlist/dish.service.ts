@@ -18,8 +18,16 @@ export class DishService {
   }
 
   createDish(dish): Observable<any> {
-    console.log("starting log - createDish");
-    console.log(dish);
+    const ff = {
+      image:
+        "https://www.recipesaresimple.com/wp-content/uploads/2018/09/easy-kerala-chicken-fry-1000x500.jpg",
+      name: "fdfd",
+      description: "dffds",
+      orderingPosition: "fdffdffdfd",
+      uom: "fdf",
+      types: [{ name: "dfdf", sizes: [{ name: "fdfd", price: 0 }] }]
+    };
+    console.log("starting log - createDish", dish);
     return this.http.post("http://localhost:3002/v1/dishes/create", dish, {
       headers: this.headers
     });

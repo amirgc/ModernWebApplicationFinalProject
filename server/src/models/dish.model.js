@@ -4,17 +4,11 @@ var dishSchema = new mongoose.Schema(
   {
     name: String,
     description: String,
-    image: String, 
+    image: String,
     orderingPosition: String,
     uom: String,
     category: String,
-    // types: [
-    //   { name: String, sizes: [
-    //     {name: String, price: Number }
-    //   ] }
-    // ],
-    type: String,
-    price: {type: Number, default: 0},
+    types: [{ name: String, sizes: [{ name: String, price: Number }] }],
     created_date: { type: Date, default: Date.now }
   },
   {
