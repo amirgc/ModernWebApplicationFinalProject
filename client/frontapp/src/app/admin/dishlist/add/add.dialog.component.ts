@@ -3,6 +3,7 @@ import { Component, Inject } from "@angular/core";
 import { DishService } from "../dish.service";
 import { FormControl, Validators } from "@angular/forms";
 import { Dish } from "../model/dish";
+import { DishTypeModel, DishSizeModel, DishModel } from "./dish.model";
 
 @Component({
   selector: "app-add.dialog",
@@ -23,13 +24,16 @@ export class AddDialogComponent {
     "http://dailyorange.com/resize/800/wp-content/uploads/2018/02/18220715/Courtesy_Dangs-Cafe.jpg",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm64qgRK4ImDYUeoK7LE5c-QDiNHikzCt8h15AFbfwf9pZJsqokQ"
   ];
+  dish: DishModel;
 
   constructor(
     public dialogRef: MatDialogRef<AddDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Dish,
+    @Inject(MAT_DIALOG_DATA) public data: DishModel,
     public dishService: DishService
   ) {
+    this.dish = new DishModel();
     data.image = this.images[Math.floor(Math.random() * 9)];
+    this.addType();
   }
 
   formControl = new FormControl("", [
@@ -54,11 +58,47 @@ export class AddDialogComponent {
   }
 
   public confirmAdd(): void {
-    console.log("--starting confirmAdd--");
-    this.dishService.createDish(this.data);
-    this.dishService.createDish(this.data).subscribe(result => {
+    this.data.types = this.dish.types;
+
+    this.dishService.createDish(JSON.stringify(this.data)).subscribe(result => {
       console.log(result);
     });
-    console.log("--ending confirmAdd--");
+  }
+
+  addType(): void {
+    const dishType: DishTypeModel = new DishTypeModel();
+    const dishSize: DishSizeModel = new DishSizeModel();
+    dishType.sizes.push(dishSize);
+    this.dish.types.push(dishType);
+  }
+
+  removeType(type): void {
+    if (this.dish.types.length !== 1) {
+      this.dish.types.splice(this.dish.types.findIndex(x => x === type), 1);
+    } else {
+      // Can't delete
+    }
+  }
+
+  addSize(type): void {
+    this.dish.types[this.dish.types.findIndex(x => x === type)].sizes.push(
+      new DishSizeModel()
+    );
+  }
+
+  removeSize(type, size): void {
+    if (
+      this.dish.types[this.dish.types.findIndex(x => x === type)].sizes
+        .length !== 1
+    ) {
+      this.dish.types[this.dish.types.findIndex(x => x === type)].sizes.splice(
+        this.dish.types[
+          this.dish.types.findIndex(x => x === type)
+        ].sizes.findIndex(x => x === size),
+        1
+      );
+    } else {
+      // Can't delete
+    }
   }
 }

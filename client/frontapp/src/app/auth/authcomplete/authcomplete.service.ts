@@ -22,7 +22,6 @@ export class AuthCompleteService {
     ); // add a new header, creating a new object
     headers = headers.append("x-access-token", acesstoken); // add a new header, creating a new object
 
-    console.log("getUserInfo", acesstoken);
     return this.http.get(this.httpRequestUrl + "verifyToken", {
       headers: headers
     });
