@@ -40,7 +40,6 @@ export class SidepanelComponent implements OnInit {
   orderLines: Observable<OrderLineModel[]>;
 
   /**variable declarations */
-  toggleCheckoutPlaceorderButton: boolean;
   netAmount = 0;
   taxableAmount = "0.00";
   deliveryCharge = "0.00";
@@ -82,7 +81,6 @@ export class SidepanelComponent implements OnInit {
   }
 
   goToCheckout() {
-    this.toggleCheckoutPlaceorderButton = true;
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const token = currentUser && currentUser.token;
     if (token) {

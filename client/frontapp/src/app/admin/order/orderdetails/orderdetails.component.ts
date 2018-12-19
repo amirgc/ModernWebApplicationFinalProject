@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { MyoudersService } from "../myouders.service";
-import { ActivatedRoute, Router, ParamMap } from "@angular/router";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 
 @Component({
   selector: "app-orderdetails",
@@ -8,24 +8,21 @@ import { ActivatedRoute, Router, ParamMap } from "@angular/router";
   styleUrls: ["./orderdetails.component.scss"]
 })
 export class OrderdetailsComponent implements OnInit {
-  myid;
+  myid: string;
+  data1;
+  myData;
   constructor(
     private myserve: MyoudersService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {}
-  data;
-  myData;
-  ngOnInit() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      console.log("dasd");
-      const id = params.get("_id");
-      this.myid = id;
-      console.log("PARAM ID - ", this.myid);
-    });
-    this.myserve.getMyOrder().subscribe(res => {
-      this.myData = res;
+    public dialogRef: MatDialogRef<OrderdetailsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.myid = data.id;
+    console.log(this.myid);
+    this.myserve.getOrderDetailsById(this.myid).subscribe(res => {
+      this.myData = res[0];
       console.log(this.myData);
     });
   }
+
+  ngOnInit() {}
 }

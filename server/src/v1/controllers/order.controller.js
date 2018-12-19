@@ -16,6 +16,22 @@ function FindAllOrders(req, res) {
     });
 }
 
+function FindOrdersById(req, res) {
+  console.log("Find Orders", req.params.id);
+
+  OrderService.findOrdersById(req.params.id)
+    .then(orders => {
+      res.status(200).send(orders);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send({
+        status: "error",
+        message: err
+      });
+    });
+}
+
 function AddTestOrders(req, res) {
   console.log(req.body);
   OrderService.addTestOrders(req, res)
@@ -89,5 +105,6 @@ module.exports = {
   AddTestOrders,
   DeleteAllOrders,
   DeleteOrder,
-  ChangeOrderStatus
+  ChangeOrderStatus,
+  FindOrdersById
 };

@@ -29,6 +29,14 @@ function findAllOrders(req) {
     });
   });
 }
+function findOrdersById(id) {
+  return new Promise(function(resolve, reject) {
+    repository
+      .retrieve(Orders,id)
+      .then(data => resolve(data))
+      .catch(err => reject(err));
+  });
+}
 
 function deleteAllOrders(req) {
   return new Promise(function(resolve, reject) {
@@ -71,5 +79,6 @@ module.exports = {
   addTestOrders,
   deleteAllOrders,
   deleteById,
-  changeStatus
+  changeStatus,
+  findOrdersById
 };

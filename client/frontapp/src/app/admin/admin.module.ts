@@ -44,7 +44,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
   entryComponents: [
     AddDialogComponent,
     EditDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    OrderdetailsComponent
   ]
 })
 export class AdminModule {}

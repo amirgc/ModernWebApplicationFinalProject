@@ -2,8 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { MatTableModule } from "@angular/material/table";
 import { MyoudersService } from "./myouders.service";
 import { OrderModel } from "./ordermodel";
-import { MatTableDataSource } from "@angular/material";
+import { MatTableDataSource, MatDialog } from "@angular/material";
 import { Router, ActivatedRoute } from "@angular/router";
+import { OrderdetailsComponent } from "./orderdetails/orderdetails.component";
 
 @Component({
   selector: "app-order",
@@ -27,12 +28,12 @@ export class OrderComponent implements OnInit {
   constructor(
     private orderService: MyoudersService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
     this.orderService.getMyOrder().subscribe(res => {
-      console.log(res);
       this.data = res.map(x => {
         const test = {
           _id: x._id,
@@ -48,8 +49,11 @@ export class OrderComponent implements OnInit {
     });
   }
 
-  navigate(inputs) {
-    // console.log("Param ID :- ",inputs);
-    this.router.navigate(["/admin/orders", inputs], { relativeTo: this.route });
+  navigate(id) {
+    const dialogRef = this.dialog.open(OrderdetailsComponent, {
+      width: "800px",
+      height: "auto",
+      data: { id }
+    });
   }
 }
