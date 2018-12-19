@@ -5,6 +5,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { MaterialComponentsModule } from "./material-components.module";
+import { MatTableModule } from "@angular/material";
 
 // custom modules
 import { UserModule } from "./user/user.module";
@@ -33,7 +34,8 @@ import { GlobalService } from "./_services/globale-variable.services";
     BrowserAnimationsModule,
     HttpClientModule,
     UserModule,
-    AdminModule
+    AdminModule,
+    MatTableModule
   ],
   providers: [AuthCompleteService, AuthAdminGuard, GlobalService],
   bootstrap: [AppComponent]

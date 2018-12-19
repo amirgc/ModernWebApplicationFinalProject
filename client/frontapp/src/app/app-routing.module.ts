@@ -11,6 +11,8 @@ import { RegisterComponent } from "./auth/register/register.component";
 import { MenumainComponent } from "./user/menumain/menumain.component";
 import { OrderComponent } from "./admin/order/order.component";
 import { OrderdetailsComponent } from "./admin/order/orderdetails/orderdetails.component";
+import { DishesComponent } from "./admin/dishlist/dishes.component";
+// import { DishComponent } from "./admin/dishlist/dish.component";
 
 const routes: Routes = [
   {
@@ -35,18 +37,30 @@ const routes: Routes = [
         path: "orders",
         component: OrderComponent,
         pathMatch: "full",
-        children : [
-          { path : "ordersdetail",
-            component : OrderdetailsComponent,
-            pathMatch : "full"
-        }
+        children: [
+          {
+            path: "ordersdetail",
+            component: OrderdetailsComponent,
+            pathMatch: "full"
+          }
         ]
       },
       {
         path: "orders/:_id",
         component: OrderdetailsComponent,
+        pathMatch: "full"
+      },
+      {
+        path: "dishes",
+        component: DishesComponent,
         pathMatch: "full",
-       
+        canActivate: [AuthAdminGuard]
+      },
+      {
+        path: "dishes/create",
+        component: DishesComponent,
+        pathMatch: "full",
+        canActivate: [AuthAdminGuard]
       }
     ]
   },

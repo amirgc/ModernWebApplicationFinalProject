@@ -10,7 +10,9 @@ router.post("/dishes/create", DishController.CreateDish);
 // get a dish by id
 router.get("/dishes/:id", DishController.FindDishById);
 // update a dish by id
-router.post("/dishes/update/:id", DishController.UpdateDish);
+router.post("/dishes/update", DishController.UpdateDish);
+// remove a dish by id
+router.post("/dishes/delete", DishController.RemoveDish);
 
 // exports
 module.exports = router;

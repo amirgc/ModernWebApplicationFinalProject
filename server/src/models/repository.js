@@ -17,7 +17,7 @@ const DbConstant = require("../utils/dbConstant");
 function create(Model) {
   return new Promise((resolve, reject) => {
     console.log("auth repo createUser")
-    Model.save(function(err, data) {
+    Model.save(function (err, data) {
       if (err) {
         reject(err);
       }
@@ -42,14 +42,20 @@ function create(Model) {
  *  resolve{Entity[]}
  *  reject{Error}
  */
-function list(Model, queryParams) {
+function list(Model, isSort=false, queryParams = null) {
   return new Promise((resolve, reject) => {
-    Model.find({})
-      .limit(parseInt(queryParams.limit) || DbConstant.DEFAULT_ENTITY_PER_PAGE)
-      .exec(function(err, data) {
-        if (err) reject(err);
-        resolve(data);
-      });
+    let result = Model.find({});
+    if (queryParams && queryParams.limit) {
+      result = result.limit(parseInt(queryParams.limit) || DbConstant.DEFAULT_ENTITY_PER_PAGE);
+    }
+    if(isSort) {
+      result = result.sort({created_date: -1});
+    }
+    result = result.exec(function (err, data) {
+      if (err) reject(err);
+      resolve(data);
+    });
+    return result;
   });
 }
 
@@ -107,7 +113,7 @@ function retrieve(Model, id) {
  *  reject{Error}
  */
 function update(Model, id) {
-  return Model.update(id)
+  return Model.update({ _id: id })
     .then(updatedEntity => {
       return parseSingleEntity(updatedEntity);
     })
@@ -130,7 +136,7 @@ function parseSingleEntity(response) {
     let responseEntity = response.plain();
     let path = response.entityKey.path;
     path = path.splice(0, path.length - 2);
-    return Promise.each(path, function(item, index) {
+    return Promise.each(path, function (item, index) {
       if (index % 2 === 0) {
         responseEntity[item.toLowerCase()] = {
           id: parseInt(path[index + 1])

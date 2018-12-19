@@ -3,23 +3,68 @@ import { CommonModule } from "@angular/common";
 import { MainComponent } from "./main/main.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { RouterModule } from "@angular/router";
+import { OrderComponent } from "./order/order.component";
 
-import { OrderComponent } from './order/order.component';
-import { DishComponent } from './dish/dish.component';
-import { DishlistComponent } from './dishlist/dishlist.component';
+import { MatProgressSpinnerModule, MatSortModule } from "@angular/material";
+import { HttpClientModule } from "@angular/common/http";
+import { OrderdetailsComponent } from "./order/orderdetails/orderdetails.component";
+// import { DishComponent } from './dishlist/dish.component';
+import { DishesComponent } from "./dishlist/dishes.component";
+import { AddDialogComponent } from "./dishlist/add/add.dialog.component";
+import { EditDialogComponent } from "./dishlist/edit/edit.dialog.component";
+import { DeleteDialogComponent } from "./dishlist/delete/delete.dialog.component";
 import {
-  MatInputModule, MatPaginatorModule, MatProgressSpinnerModule,
-  MatSortModule, MatTableModule
+  MatTableModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatIconModule,
+  MatToolbarModule,
+  MatDialogModule
 } from "@angular/material";
-import {HttpClientModule} from "@angular/common/http";
-import { OrderdetailsComponent } from './order/orderdetails/orderdetails.component'
-
+import { DishService } from "./dishlist/dish.service";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-    declarations: [MainComponent, DashboardComponent, DishComponent, DishlistComponent,OrderComponent, OrderdetailsComponent],
-    imports: [CommonModule, RouterModule, MatTableModule,
-      MatPaginatorModule,
-      MatSortModule,
-      MatProgressSpinnerModule,HttpClientModule]
-  })
-export class AdminModule { }
+  declarations: [
+    MainComponent,
+    DashboardComponent,
+    OrderComponent,
+    OrderdetailsComponent,
+    MainComponent,
+    DashboardComponent,
+    DishesComponent,
+    AddDialogComponent,
+    EditDialogComponent,
+    DeleteDialogComponent
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    HttpClientModule,
+    CommonModule,
+    RouterModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatDialogModule
+  ],
+  providers: [DishService],
+  entryComponents: [
+    AddDialogComponent,
+    EditDialogComponent,
+    DeleteDialogComponent
+  ]
+})
+export class AdminModule {}

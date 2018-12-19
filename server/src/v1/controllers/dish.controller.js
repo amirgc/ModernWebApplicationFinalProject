@@ -9,10 +9,12 @@ const DbConstant = require("../../utils/dbConstant").kind;
  * @param {*} res 
  */
 function CreateDish(req, res) {
-  console.log("Creating Dish");
-  DishService.createDish(req)
-    .then(token => {
-      res.status(200).send(token);
+  console.log("-- start log -- Creating Dish " + Date.now()) ;
+  console.log(req);
+  console.log("-- end log -- Creating Dish " + Date.now()) ;
+  DishService.createDish(req.body)
+    .then(result => {
+      res.status(200).send(result);
     })
     .catch(err => res.status(500).send(err));
 }
@@ -52,8 +54,9 @@ function FindDishes(req, res) {
  */
 function UpdateDish(req, res) {
   console.log("Updating dish");
-  DishService.updateDishById(req)
+  DishService.updateDishById(req.body)
   .then(data => {
+    console.log(data)
     res.status(200).send(JSON.stringify(data));
   })
   .catch(err => res.status(500).send("Updating fail"));
@@ -61,7 +64,7 @@ function UpdateDish(req, res) {
 
 function RemoveDish(req, res) {
   console.log("Removing dish");
-  DishService.removeDish(req)
+  DishService.removeDish(req.body)
   .then(data => {
     res.status(200).send(JSON.stringify(data));
   })
