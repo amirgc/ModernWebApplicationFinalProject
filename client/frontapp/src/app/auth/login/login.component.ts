@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
             } else if (response.role === "user") {
               this.router.navigate(["/menu"]);
             }
+            localStorage.setItem("user", JSON.stringify(response));
             this.loading = false;
           },
           err => {

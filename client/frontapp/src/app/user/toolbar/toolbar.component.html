@@ -24,6 +24,10 @@
   >
     <mat-icon>account_circle</mat-icon> Login
   </button>
+  <div class="welcome" *ngIf="isLoggedIn">Welcome {{ user }}</div>
+  <button mat-button class="menu-header" (click)="logOut()" *ngIf="isLoggedIn">
+    Logout
+  </button>
 </div>
 
 <div class="overlay" [class.active]="isBtnActive" (click)="toggleMenu()"></div>
