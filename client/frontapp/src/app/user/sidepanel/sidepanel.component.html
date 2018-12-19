@@ -23,7 +23,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let row of (orderLines | async); let i = index">
-                <td>{{ row.size }} {{ row.type }} {{ row.dish }}</td>
+                <td>{{ row.size }} {{ row.Type }} {{ row.dish }}</td>
                 <td>{{ row.qty }}</td>
                 <td>{{ row.amount }}</td>
                 <td class="icon">
@@ -62,7 +62,7 @@
         </app-scrollbar>
       </div>
     </div>
-    <div class="full" *ngIf="!toggleCheckoutPlaceorderButton">
+    <div class="full">
       <button
         mat-raised-button
         color="primary"

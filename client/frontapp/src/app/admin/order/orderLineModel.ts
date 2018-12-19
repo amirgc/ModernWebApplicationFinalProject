@@ -5,7 +5,7 @@ export class OrderLineModel {
   qty: number;
   rate: number;
   size: String;
-  type: String;
+  Type: String;
   uom: String;
   constructor(
     amount: number,
@@ -21,7 +21,7 @@ export class OrderLineModel {
     this.qty = qty;
     this.rate = rate;
     this.size = size;
-    this.type = type;
+    this.Type = type;
     this.uom = uom;
   }
 }

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
-import { MyoudersService } from './myouders.service';
-import { OrderModel } from './ordermodel';
-import { MatTableDataSource } from "@angular/material"
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Component, OnInit } from "@angular/core";
+import { MatTableModule } from "@angular/material/table";
+import { MyoudersService } from "./myouders.service";
+import { OrderModel } from "./ordermodel";
+import { MatTableDataSource, MatDialog } from "@angular/material";
+import { Router, ActivatedRoute } from "@angular/router";
+import { OrderdetailsComponent } from "./orderdetails/orderdetails.component";
 
 @Component({
   selector: "app-order",
@@ -14,30 +14,46 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class OrderComponent implements OnInit {
   ELEMENT_DATA: OrderModel[];
   dataSource = new MatTableDataSource<OrderModel>();
-  displayedColumns: string[] = ['_id', 'totalAmount', 'userid', 'discount','status','mybutton'];
+  displayedColumns: string[] = [
+    "_id",
+    "totalAmount",
+    "userid",
+    "discount",
+    "status",
+    "mybutton"
+  ];
   data: OrderModel[];
 
   myorders;
-  constructor(private orderService: MyoudersService, private router : Router, private route:ActivatedRoute) {
-
-  }
+  constructor(
+    private orderService: MyoudersService,
+    private router: Router,
+    private route: ActivatedRoute,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.orderService.getMyOrder().subscribe(res => {
-      
-       this.data = res.data.map(x => {
-        let test = {
-          '_id': x._id, 'totalAmount': x.totalAmount, 'userid': x.userid, 'discount': x.discount, 'status': x.status ,'mybutton': "See Details"
-        }
+      this.data = res.map(x => {
+        const test = {
+          _id: x._id,
+          totalAmount: x.totalAmount,
+          userid: x.user.name,
+          discount: x.discount,
+          status: x.status,
+          mybutton: "See Details"
+        };
         return test;
-      })
+      });
       this.dataSource = new MatTableDataSource<OrderModel>(this.data);
     });
   }
 
-  navigate(inputs){
-    // console.log("Param ID :- ",inputs);
-    this.router.navigate(['/admin/orders', inputs], {relativeTo: this.route})
+  navigate(id) {
+    const dialogRef = this.dialog.open(OrderdetailsComponent, {
+      width: "800px",
+      height: "auto",
+      data: { id }
+    });
   }
-
 }

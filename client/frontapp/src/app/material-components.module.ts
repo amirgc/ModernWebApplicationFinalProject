@@ -23,8 +23,13 @@ import {
   MatSnackBarModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSortModule,
+  MatTableModule,
+  MatFormFieldModule,
+  MatPaginatorModule
 } from "@angular/material";
+
 import { MatRadioModule } from "@angular/material/radio";
 
 @NgModule({
@@ -54,7 +59,14 @@ import { MatRadioModule } from "@angular/material/radio";
     MatProgressSpinnerModule,
     MatSelectModule,
     MatRippleModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSortModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialComponentsModule {}

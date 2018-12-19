@@ -1,13 +1,19 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class MyoudersService {
+  public httpRequestUrl: string = environment["WEB_API_URL"];
+  constructor(public http: HttpClient) {}
 
-  constructor(public http: HttpClient) { }
-
-  getMyOrder(){
-    return this.http.get("http://localhost:3002/v1/orders/");
+  getMyOrder(): Observable<any> {
+    return this.http.get(this.httpRequestUrl + "orders/");
+  }
+  getOrderDetailsById(id): Observable<any> {
+    return this.http.get(this.httpRequestUrl + "orders/" + id);
   }
 }

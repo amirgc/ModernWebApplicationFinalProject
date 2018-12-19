@@ -60,7 +60,7 @@ export class ItemSelectPopupComponent implements OnInit {
       this.selectedDish.name,
       this.qty,
       this.selectedItemSize.price,
-      this.selectedItemSize.size,
+      this.selectedItemSize.name,
       this.selectedItemType.name,
       this.selectedDish.uom
     );

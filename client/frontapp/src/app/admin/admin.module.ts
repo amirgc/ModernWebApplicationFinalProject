@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { MainComponent } from "./main/main.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
+import { MaterialComponentsModule } from "./../material-components.module";
 import { RouterModule } from "@angular/router";
-import { OrderComponent } from "./order/order.component";
 
-import { MatProgressSpinnerModule, MatSortModule } from "@angular/material";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { OrderComponent } from "./order/order.component";
+import { MainComponent } from "./main/main.component";
 import { HttpClientModule } from "@angular/common/http";
 import { OrderdetailsComponent } from "./order/orderdetails/orderdetails.component";
 // import { DishComponent } from './dishlist/dish.component';
@@ -13,18 +13,9 @@ import { DishesComponent } from "./dishlist/dishes.component";
 import { AddDialogComponent } from "./dishlist/add/add.dialog.component";
 import { EditDialogComponent } from "./dishlist/edit/edit.dialog.component";
 import { DeleteDialogComponent } from "./dishlist/delete/delete.dialog.component";
-import {
-  MatTableModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatPaginatorModule,
-  MatSelectModule,
-  MatIconModule,
-  MatToolbarModule,
-  MatDialogModule
-} from "@angular/material";
 import { DishService } from "./dishlist/dish.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -42,29 +33,19 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
   imports: [
     CommonModule,
     RouterModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatProgressSpinnerModule,
     HttpClientModule,
     CommonModule,
+    MaterialComponentsModule,
     RouterModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatSelectModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatDialogModule
+    ReactiveFormsModule
   ],
   providers: [DishService],
   entryComponents: [
     AddDialogComponent,
     EditDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    OrderdetailsComponent
   ]
 })
 export class AdminModule {}

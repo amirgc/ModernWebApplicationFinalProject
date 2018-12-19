@@ -1,52 +1,55 @@
-<mat-toolbar color="primary">
-  <span>List of Dishes</span>
-  <span class="spacer"></span>
+
   <button mat-icon-button (click)="refresh()">
     <mat-icon>refresh</mat-icon>
   </button>
-</mat-toolbar>
-
-<div class="container mat-elevation-z8">
-
   <div class="form">
     <mat-form-field floatPlaceholder="never" color="accent">
-      <input matInput #filter placeholder="Filter Dishes">
+      <input matInput #filter placeholder="Filter Dishes" />
     </mat-form-field>
   </div>
 
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
-
     <ng-container matColumnDef="position">
       <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element; let i = index"> {{i+1}} </mat-cell>
+      <mat-cell *matCellDef="let element; let i = index">
+        {{ i + 1 }}
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
     </ng-container>
-  
+
     <!-- Description Column -->
     <ng-container matColumnDef="Description">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Description
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.description }} </mat-cell>
     </ng-container>
-  
+
     <!-- Category Column -->
     <ng-container matColumnDef="Category">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Category
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.category }} </mat-cell>
     </ng-container>
 
     <!-- actions -->
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
         <button mat-icon-button color="primary" (click)="addNew()">
-          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+          <mat-icon aria-label="Example icon-button with a heart icon"
+            >add</mat-icon
+          >
         </button>
       </mat-header-cell>
 
-      <mat-cell *matCellDef="let row; let i=index;">
+      <mat-cell *matCellDef="let row; let i = index">
         <button mat-icon-button color="accent" (click)="startEdit(row)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
@@ -58,9 +61,8 @@
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
-
 
   <!--<div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
     No results
@@ -73,4 +75,4 @@
                  [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>-->
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div>
+

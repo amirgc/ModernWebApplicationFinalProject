@@ -7,7 +7,7 @@ var mongoose = require("mongoose");
 var User = mongoose.model("User");
 
 /**
- * Create a new TestData
+ * Create a new c
  * @param userParams {Object}
  *  eg:
  *    {
@@ -16,8 +16,8 @@ var User = mongoose.model("User");
  *     value: 10
  *    }
  * @return Promise
- *  resolve{LateFee}, if new Late Fee is created
- *  reject{Error}, if late fee can't be created
+ *  resolve{order}, iforder is created
+ *  reject{Error}, if order can't be created
  */
 function createTestData(params) {
   return new Promise(function(resolve, reject) {
@@ -83,3 +83,5 @@ module.exports = {
   listTestData,
   updateTestData
 };
+
+
